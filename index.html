@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>StudyPro — Learn Smarter</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+
+<!-- ?? Google Analytics (replace ID) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-XXXXXXXXXX');
+</script>
+
+<style>
+*{margin:0;padding:0;box-sizing:border-box;font-family:Poppins,sans-serif;}
+
+body{
+  background:#0b1220;
+  color:white;
+  overflow-x:hidden;
+}
+
+/* NAV */
+nav{
+  display:flex;
+  justify-content:space-between;
+  padding:20px 8%;
+  position:sticky;
+  top:0;
+  background:rgba(10,15,30,0.7);
+  backdrop-filter:blur(10px);
+}
+
+.logo{font-weight:800;font-size:20px;}
+nav a{color:#bbb;margin-left:20px;text-decoration:none;font-size:14px}
+.btn{
+  background:linear-gradient(135deg,#22c55e,#16a34a);
+  padding:10px 16px;
+  border-radius:12px;
+  color:white;
+  font-weight:600;
+}
+
+/* HERO */
+.hero{
+  text-align:center;
+  padding:90px 8%;
+  background:radial-gradient(circle,#1e293b,#0b1220);
+}
+
+.hero h1{font-size:54px;font-weight:800;}
+.hero p{margin-top:15px;color:#bbb;max-width:600px;margin:auto;}
+
+.cta{margin-top:25px;display:flex;justify-content:center;gap:15px;flex-wrap:wrap;}
+.cta a{padding:14px 20px;border-radius:14px;text-decoration:none;font-weight:600;}
+.primary{background:#22c55e;}
+.secondary{border:1px solid #444;}
+
+/* SECTIONS */
+section{padding:70px 8%;}
+
+.title{text-align:center;font-size:28px;font-weight:700;margin-bottom:40px;}
+
+.grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+  gap:20px;
+}
+
+.card{
+  background:rgba(255,255,255,0.05);
+  padding:20px;
+  border-radius:18px;
+  border:1px solid rgba(255,255,255,0.08);
+}
+
+/* STATS */
+.stats{
+  display:flex;
+  justify-content:center;
+  gap:40px;
+  flex-wrap:wrap;
+}
+
+.stat h2{color:#22c55e;font-size:32px;text-align:center}
+
+/* DOWNLOAD */
+.download{
+  text-align:center;
+}
+
+.qr img{
+  margin-top:20px;
+  border-radius:12px;
+}
+
+/* FOOTER */
+footer{
+  text-align:center;
+  padding:40px;
+  border-top:1px solid #222;
+  color:#777;
+  font-size:13px;
+}
+
+/* ANIMATION */
+.fade{animation:fadeIn 1s ease;}
+@keyframes fadeIn{
+  from{opacity:0;transform:translateY(20px)}
+  to{opacity:1;transform:translateY(0)}
+}
+</style>
+</head>
+
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="logo">?? StudyPro</div>
+  <div>
+    <a href="#features">Features</a>
+    <a href="#stats">Stats</a>
+    <a href="#download" class="btn">Download</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<div class="hero fade">
+  <h1>Learn. Play. Level Up.</h1>
+  <p>Gamified learning app with XP, streaks, quizzes, offline mode & rewards system built for students.</p>
+
+  <div class="cta">
+    <a class="primary" href="#download">Download APK</a>
+    <a class="secondary" href="#features">Explore Features</a>
+  </div>
+</div>
+
+<!-- FEATURES -->
+<section id="features">
+  <div class="title">?? Features</div>
+
+  <div class="grid">
+    <div class="card">?? Offline Learning Mode</div>
+    <div class="card">?? Smart Quizzes</div>
+    <div class="card">? XP & Level System</div>
+    <div class="card">?? Daily Streaks</div>
+    <div class="card">?? Rewards Shop</div>
+    <div class="card">?? Analytics Dashboard</div>
+  </div>
+</section>
+
+<!-- STATS -->
+<section id="stats">
+  <div class="title">?? Impact</div>
+
+  <div class="stats">
+    <div class="stat"><h2>10K+</h2><p>Students</p></div>
+    <div class="stat"><h2>1M+</h2><p>Quizzes</p></div>
+    <div class="stat"><h2>95%</h2><p>Engagement</p></div>
+  </div>
+</section>
+
+<!-- DOWNLOAD -->
+<section id="download" class="download fade">
+  <div class="title">? Download StudyPro</div>
+
+  <p style="color:#bbb;">Install APK and start learning instantly</p>
+
+  <br/>
+
+  <a class="btn" id="downloadBtn" href="YOUR_APK_LINK.apk">
+    Download APK
+  </a>
+
+  <!-- QR CODE -->
+  <div class="qr">
+    <img id="qr" width="160"/>
+  </div>
+
+  <p style="margin-top:20px;color:#666;font-size:12px;">
+    Enable “Install Unknown Apps” on Android
+  </p>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  © 2026 StudyPro — Built for next-generation learners
+</footer>
+
+<script>
+const apk = "YOUR_APK_LINK.apk";
+
+/* QR CODE */
+document.getElementById("qr").src =
+`https://api.qrserver.com/v1/create-qr-code/?size=160x160&data=${encodeURIComponent(apk)}`;
+
+/* Analytics tracking */
+function track(e){
+  console.log("event:", e);
+}
+
+track("page_view");
+
+document.getElementById("downloadBtn").addEventListener("click",()=>{
+  track("apk_download_click");
+});
+</script>
+
+</body>
+</html>
