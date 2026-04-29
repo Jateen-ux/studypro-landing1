@@ -1,0 +1,801 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta http-equiv="content-type" content="text/html; charset=utf-8"/>
+	<title></title>
+	<meta name="generator" content="LibreOffice 25.8.4.2 (Linux)"/>
+	<meta name="created" content="00:00:00"/>
+	<meta name="changed" content="00:00:00"/>
+	<style type="text/css">
+		@page { size: 8.27in 11.69in; margin: 0.79in }
+		p { margin-bottom: 0.1in; line-height: 115%; background: transparent }
+		pre { font-size: 10pt; font-family: "Liberation Mono", monospace; background: transparent }
+	</style>
+</head>
+<body lang="en-US" link="#000080" vlink="#800000" dir="ltr"><pre>&lt;!DOCTYPE html&gt;
+&lt;html lang=&quot;en&quot;&gt;
+&lt;head&gt;
+&lt;meta charset=&quot;UTF-8&quot;/&gt;
+&lt;meta name=&quot;viewport&quot; content=&quot;width=device-width, initial-scale=1.0&quot;/&gt;
+&lt;title&gt;StudyPro Premium&lt;/title&gt;
+&lt;link href=&quot;https://fonts.googleapis.com/css2?family=Sora:wght@400;500;600;700&amp;family=JetBrains+Mono:wght@400;500&amp;display=swap&quot; rel=&quot;stylesheet&quot;&gt;
+&lt;style&gt;
+:root {
+  --bg: #08090d;
+  --surface: #0f1117;
+  --surface2: #161820;
+  --border: rgba(255,255,255,0.07);
+  --border-hover: rgba(255,255,255,0.14);
+  --text: #eef0f6;
+  --muted: #6b7280;
+  --accent: #6ee7b7;
+  --accent-dim: rgba(110,231,183,0.12);
+  --accent-border: rgba(110,231,183,0.35);
+  --blue: #60a5fa;
+  --blue-dim: rgba(96,165,250,0.12);
+  --red: #f87171;
+  --red-dim: rgba(248,113,113,0.12);
+  --yellow: #fbbf24;
+  --radius: 14px;
+  --radius-sm: 8px;
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body {
+  font-family: 'Sora', sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  min-height: 100vh;
+}
+body::after {
+  content: '';
+  position: fixed;
+  top: -180px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 600px;
+  height: 400px;
+  background: radial-gradient(ellipse, rgba(110,231,183,0.08) 0%, transparent 70%);
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* -- PAGES -- */
+.page { display: none; position: relative; z-index: 1; }
+.page.active { display: block; }
+
+/* ----------------------------------
+   FRONT PAGE
+---------------------------------- */
+#frontPage {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 24px 20px;
+  text-align: center;
+}
+#frontPage.active { display: flex; }
+
+.front-badge {
+  display: inline-block;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  padding: 5px 14px;
+  border-radius: 20px;
+  background: var(--accent-dim);
+  border: 1px solid var(--accent-border);
+  color: var(--accent);
+  margin-bottom: 24px;
+}
+
+.front-title {
+  font-size: clamp(36px, 8vw, 60px);
+  font-weight: 700;
+  line-height: 1.1;
+  letter-spacing: -1.5px;
+  color: var(--text);
+  margin-bottom: 10px;
+}
+
+.front-title span { color: var(--accent); }
+
+.front-sub {
+  font-size: 15px;
+  color: var(--muted);
+  max-width: 320px;
+  line-height: 1.6;
+  margin: 0 auto 36px;
+}
+
+.front-features {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  max-width: 340px;
+  width: 100%;
+  margin: 0 auto 36px;
+}
+
+.feat-row {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  padding: 12px 16px;
+  text-align: left;
+}
+
+.feat-icon {
+  font-size: 20px;
+  flex-shrink: 0;
+  width: 32px;
+  text-align: center;
+}
+
+.feat-text { font-size: 13px; color: var(--muted); }
+.feat-text strong { display: block; color: var(--text); font-weight: 600; font-size: 13px; margin-bottom: 2px; }
+
+.start-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 14px 36px;
+  border-radius: var(--radius-sm);
+  border: none;
+  background: var(--accent);
+  color: #08090d;
+  font-family: 'Sora', sans-serif;
+  font-size: 15px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.2s;
+  letter-spacing: -0.2px;
+}
+
+.start-btn:hover { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(110,231,183,0.25); }
+.start-btn:active { transform: translateY(0); }
+
+.front-stats-row {
+  display: flex;
+  gap: 24px;
+  justify-content: center;
+  margin-top: 28px;
+}
+
+.fstat { text-align: center; }
+.fstat-val { font-family: 'JetBrains Mono', monospace; font-size: 22px; font-weight: 500; color: var(--text); }
+.fstat-label { font-size: 11px; color: var(--muted); margin-top: 2px; }
+
+/* ----------------------------------
+   QUIZ PAGE
+---------------------------------- */
+nav {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  background: rgba(8,9,13,0.88);
+  border-bottom: 1px solid var(--border);
+  padding: 14px 5%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.nav-left { display: flex; align-items: center; gap: 10px; }
+.nav-logo { font-size: 16px; font-weight: 700; letter-spacing: -0.3px; }
+.nav-logo span { color: var(--accent); }
+.nav-badge { font-size: 10px; font-weight: 600; letter-spacing: 0.5px; text-transform: uppercase; padding: 3px 8px; border-radius: 20px; background: var(--accent-dim); border: 1px solid var(--accent-border); color: var(--accent); }
+.back-btn { font-size: 12px; color: var(--muted); background: none; border: none; cursor: pointer; font-family: 'Sora', sans-serif; padding: 4px 8px; border-radius: 6px; }
+.back-btn:hover { color: var(--text); }
+
+.wrap { position: relative; z-index: 1; max-width: 480px; margin: 0 auto; padding: 20px 16px 40px; }
+.card { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); padding: 18px 20px; margin-bottom: 12px; }
+.section-label { font-size: 11px; font-weight: 600; letter-spacing: 0.8px; text-transform: uppercase; color: var(--muted); margin-bottom: 12px; }
+.class-row { display: flex; gap: 8px; }
+.cls-btn { flex: 1; padding: 10px; border-radius: var(--radius-sm); border: 1px solid var(--border); background: var(--surface2); color: var(--muted); font-family: 'Sora', sans-serif; font-size: 13px; font-weight: 500; cursor: pointer; transition: all 0.2s; }
+.cls-btn:hover { border-color: var(--border-hover); color: var(--text); }
+.cls-btn.active { background: var(--accent-dim); border-color: var(--accent-border); color: var(--accent); }
+
+select { width: 100%; padding: 10px 32px 10px 12px; border-radius: var(--radius-sm); border: 1px solid var(--border); background: var(--surface2); color: var(--text); font-family: 'Sora', sans-serif; font-size: 13px; outline: none; cursor: pointer; transition: border-color 0.2s; appearance: none; background-image: url(&quot;data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%236b7280' d='M6 8L1 3h10z'/%3E%3C/svg%3E&quot;); background-repeat: no-repeat; background-position: right 12px center; }
+select:hover, select:focus { border-color: var(--border-hover); }
+
+.stats-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; margin-bottom: 12px; }
+.stat-box { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius-sm); padding: 12px 10px; text-align: center; }
+.stat-label { font-size: 10px; font-weight: 600; letter-spacing: 0.6px; text-transform: uppercase; color: var(--muted); margin-bottom: 4px; }
+.stat-val { font-family: 'JetBrains Mono', monospace; font-size: 22px; font-weight: 500; color: var(--text); transition: color 0.3s; }
+.stat-val.bump { color: var(--accent); }
+
+.xp-card { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius-sm); padding: 12px 14px; margin-bottom: 12px; }
+.xp-head { display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px; }
+.xp-level { font-size: 12px; font-weight: 600; color: var(--accent); }
+.xp-nums { font-family: 'JetBrains Mono', monospace; font-size: 11px; color: var(--muted); }
+.xp-track { height: 4px; background: var(--surface2); border-radius: 10px; overflow: hidden; }
+.xp-fill { height: 100%; width: 0%; background: linear-gradient(90deg, var(--accent), var(--blue)); border-radius: 10px; transition: width 0.5s cubic-bezier(0.4,0,0.2,1); }
+
+.quiz-card { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); padding: 22px 20px; min-height: 320px; }
+
+.q-meta { display: flex; justify-content: space-between; align-items: center; margin-bottom: 14px; }
+.q-count { font-size: 11px; font-weight: 600; letter-spacing: 0.5px; color: var(--muted); }
+.q-chapter-tag { font-size: 10px; padding: 3px 8px; border-radius: 20px; background: var(--blue-dim); color: var(--blue); border: 1px solid rgba(96,165,250,0.25); max-width: 160px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+
+.q-text { font-size: 15px; font-weight: 500; line-height: 1.6; color: var(--text); margin-bottom: 18px; }
+
+.option-btn { width: 100%; margin-bottom: 8px; padding: 13px 15px; border-radius: var(--radius-sm); border: 1px solid var(--border); background: var(--surface2); color: var(--text); font-family: 'Sora', sans-serif; font-size: 13px; font-weight: 400; text-align: left; cursor: pointer; transition: all 0.18s; line-height: 1.4; display: flex; align-items: flex-start; gap: 10px; }
+.opt-letter { font-family: 'JetBrains Mono', monospace; font-size: 11px; font-weight: 500; color: var(--muted); flex-shrink: 0; margin-top: 1px; background: var(--surface); border: 1px solid var(--border); border-radius: 4px; padding: 1px 5px; transition: all 0.18s; }
+.option-btn:hover:not(:disabled) { border-color: var(--border-hover); background: var(--surface); }
+.option-btn:hover:not(:disabled) .opt-letter { border-color: var(--border-hover); }
+.option-btn.correct { background: rgba(110,231,183,0.08); border-color: var(--accent-border); color: var(--accent); }
+.option-btn.correct .opt-letter { background: var(--accent-dim); border-color: var(--accent-border); color: var(--accent); }
+.option-btn.wrong { background: var(--red-dim); border-color: rgba(248,113,113,0.35); color: var(--red); }
+.option-btn.wrong .opt-letter { background: var(--red-dim); border-color: rgba(248,113,113,0.35); color: var(--red); }
+.option-btn:disabled { cursor: default; }
+
+.feedback { font-size: 13px; font-weight: 500; min-height: 20px; margin-top: 12px; margin-bottom: 4px; text-align: center; }
+.feedback.ok { color: var(--accent); }
+.feedback.err { color: var(--red); }
+
+.next-btn { width: 100%; margin-top: 12px; padding: 12px; border-radius: var(--radius-sm); border: 1px solid var(--accent-border); background: var(--accent-dim); color: var(--accent); font-family: 'Sora', sans-serif; font-size: 13px; font-weight: 600; cursor: pointer; display: none; transition: all 0.2s; }
+.next-btn.show { display: block; }
+.next-btn:hover { background: rgba(110,231,183,0.2); }
+
+.result-wrap { display: none; text-align: center; padding: 32px 16px; }
+.result-icon { font-size: 44px; margin-bottom: 12px; }
+.result-title { font-size: 20px; font-weight: 700; margin-bottom: 6px; }
+.result-score-big { font-family: 'JetBrains Mono', monospace; font-size: 48px; font-weight: 500; color: var(--accent); margin: 12px 0 6px; }
+.result-sub { font-size: 13px; color: var(--muted); margin-bottom: 20px; }
+.result-btns { display: flex; gap: 10px; justify-content: center; }
+.restart-btn { padding: 11px 24px; border-radius: var(--radius-sm); border: 1px solid var(--border-hover); background: transparent; color: var(--text); font-family: 'Sora', sans-serif; font-size: 13px; font-weight: 500; cursor: pointer; transition: all 0.2s; }
+.restart-btn:hover { border-color: var(--accent-border); color: var(--accent); background: var(--accent-dim); }
+.home-btn { padding: 11px 24px; border-radius: var(--radius-sm); border: 1px solid var(--border); background: var(--surface2); color: var(--muted); font-family: 'Sora', sans-serif; font-size: 13px; font-weight: 500; cursor: pointer; transition: all 0.2s; }
+.home-btn:hover { color: var(--text); border-color: var(--border-hover); }
+
+.toast { position: fixed; bottom: 24px; left: 50%; transform: translateX(-50%) translateY(80px); background: var(--surface); border: 1px solid var(--accent-border); border-radius: var(--radius-sm); padding: 12px 20px; font-size: 13px; font-weight: 600; color: var(--accent); z-index: 100; transition: transform 0.35s cubic-bezier(0.34,1.56,0.64,1); white-space: nowrap; }
+.toast.show { transform: translateX(-50%) translateY(0); }
+&lt;/style&gt;
+&lt;/head&gt;
+&lt;body&gt;
+
+&lt;!-- -------------------------------
+     FRONT PAGE
+------------------------------- --&gt;
+&lt;div class=&quot;page active&quot; id=&quot;frontPage&quot;&gt;
+  &lt;div class=&quot;front-badge&quot;&gt;? NCERT Class 9 &amp;amp; 10&lt;/div&gt;
+  &lt;div class=&quot;front-title&quot;&gt;Study&lt;span&gt;Pro&lt;/span&gt;&lt;/div&gt;
+  &lt;p class=&quot;front-sub&quot;&gt;Master your NCERT chapters with gamified quizzes, XP levels, and streaks.&lt;/p&gt;
+
+  &lt;div class=&quot;front-features&quot;&gt;
+    &lt;div class=&quot;feat-row&quot;&gt;
+      &lt;div class=&quot;feat-icon&quot;&gt;??&lt;/div&gt;
+      &lt;div class=&quot;feat-text&quot;&gt;&lt;strong&gt;24 NCERT Chapters&lt;/strong&gt;Class 9 &amp;amp; 10 Science fully covered&lt;/div&gt;
+    &lt;/div&gt;
+    &lt;div class=&quot;feat-row&quot;&gt;
+      &lt;div class=&quot;feat-icon&quot;&gt;?&lt;/div&gt;
+      &lt;div class=&quot;feat-text&quot;&gt;&lt;strong&gt;XP &amp;amp; Levels&lt;/strong&gt;Earn XP for every correct answer&lt;/div&gt;
+    &lt;/div&gt;
+    &lt;div class=&quot;feat-row&quot;&gt;
+      &lt;div class=&quot;feat-icon&quot;&gt;??&lt;/div&gt;
+      &lt;div class=&quot;feat-text&quot;&gt;&lt;strong&gt;Streak Bonuses&lt;/strong&gt;Bonus XP for answering in a row&lt;/div&gt;
+    &lt;/div&gt;
+    &lt;div class=&quot;feat-row&quot;&gt;
+      &lt;div class=&quot;feat-icon&quot;&gt;??&lt;/div&gt;
+      &lt;div class=&quot;feat-text&quot;&gt;&lt;strong&gt;Instant Feedback&lt;/strong&gt;Know what's right immediately&lt;/div&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+
+  &lt;button class=&quot;start-btn&quot; onclick=&quot;goToQuiz()&quot;&gt;Start Studying ?&lt;/button&gt;
+
+  &lt;div class=&quot;front-stats-row&quot;&gt;
+    &lt;div class=&quot;fstat&quot;&gt;&lt;div class=&quot;fstat-val&quot;&gt;200+&lt;/div&gt;&lt;div class=&quot;fstat-label&quot;&gt;Questions&lt;/div&gt;&lt;/div&gt;
+    &lt;div class=&quot;fstat&quot;&gt;&lt;div class=&quot;fstat-val&quot;&gt;24&lt;/div&gt;&lt;div class=&quot;fstat-label&quot;&gt;Chapters&lt;/div&gt;&lt;/div&gt;
+    &lt;div class=&quot;fstat&quot;&gt;&lt;div class=&quot;fstat-val&quot;&gt;8&lt;/div&gt;&lt;div class=&quot;fstat-label&quot;&gt;Attempts&lt;/div&gt;&lt;/div&gt;
+  &lt;/div&gt;
+&lt;/div&gt;
+
+&lt;!-- -------------------------------
+     QUIZ PAGE
+------------------------------- --&gt;
+&lt;div class=&quot;page&quot; id=&quot;quizPage&quot;&gt;
+  &lt;nav&gt;
+    &lt;div class=&quot;nav-left&quot;&gt;
+      &lt;div class=&quot;nav-logo&quot;&gt;Study&lt;span&gt;Pro&lt;/span&gt;&lt;/div&gt;
+      &lt;div class=&quot;nav-badge&quot;&gt;Premium&lt;/div&gt;
+    &lt;/div&gt;
+    &lt;button class=&quot;back-btn&quot; onclick=&quot;goHome()&quot;&gt;? Home&lt;/button&gt;
+  &lt;/nav&gt;
+
+  &lt;div class=&quot;wrap&quot;&gt;
+
+    &lt;div class=&quot;card&quot;&gt;
+      &lt;div class=&quot;section-label&quot;&gt;Class&lt;/div&gt;
+      &lt;div class=&quot;class-row&quot;&gt;
+        &lt;button class=&quot;cls-btn active&quot; id=&quot;btn9&quot; onclick=&quot;setClass('9',this)&quot;&gt;Class 9&lt;/button&gt;
+        &lt;button class=&quot;cls-btn&quot; id=&quot;btn10&quot; onclick=&quot;setClass('10',this)&quot;&gt;Class 10&lt;/button&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+
+    &lt;div class=&quot;card&quot;&gt;
+      &lt;div class=&quot;section-label&quot;&gt;Chapter&lt;/div&gt;
+      &lt;select id=&quot;chapterSel&quot; onchange=&quot;changeChapter()&quot;&gt;&lt;/select&gt;
+    &lt;/div&gt;
+
+    &lt;div class=&quot;stats-grid&quot;&gt;
+      &lt;div class=&quot;stat-box&quot;&gt;&lt;div class=&quot;stat-label&quot;&gt;Score&lt;/div&gt;&lt;div class=&quot;stat-val&quot; id=&quot;scoreVal&quot;&gt;0&lt;/div&gt;&lt;/div&gt;
+      &lt;div class=&quot;stat-box&quot;&gt;&lt;div class=&quot;stat-label&quot;&gt;Level&lt;/div&gt;&lt;div class=&quot;stat-val&quot; id=&quot;levelVal&quot;&gt;1&lt;/div&gt;&lt;/div&gt;
+      &lt;div class=&quot;stat-box&quot;&gt;&lt;div class=&quot;stat-label&quot;&gt;Streak&lt;/div&gt;&lt;div class=&quot;stat-val&quot; id=&quot;streakVal&quot;&gt;0&lt;/div&gt;&lt;/div&gt;
+    &lt;/div&gt;
+
+    &lt;div class=&quot;xp-card&quot;&gt;
+      &lt;div class=&quot;xp-head&quot;&gt;
+        &lt;div class=&quot;xp-level&quot; id=&quot;xpLevel&quot;&gt;Level 1&lt;/div&gt;
+        &lt;div class=&quot;xp-nums&quot; id=&quot;xpNums&quot;&gt;0 / 100 XP&lt;/div&gt;
+      &lt;/div&gt;
+      &lt;div class=&quot;xp-track&quot;&gt;&lt;div class=&quot;xp-fill&quot; id=&quot;xpFill&quot;&gt;&lt;/div&gt;&lt;/div&gt;
+    &lt;/div&gt;
+
+    &lt;div class=&quot;quiz-card&quot;&gt;
+      &lt;div id=&quot;quizContent&quot;&gt;
+        &lt;div class=&quot;q-meta&quot;&gt;
+          &lt;div class=&quot;q-count&quot; id=&quot;qCount&quot;&gt;Question 1 of 5&lt;/div&gt;
+          &lt;div class=&quot;q-chapter-tag&quot; id=&quot;chapterTag&quot;&gt;&lt;/div&gt;
+        &lt;/div&gt;
+        &lt;div class=&quot;q-text&quot; id=&quot;qText&quot;&gt;Loading question...&lt;/div&gt;
+        &lt;div id=&quot;optionsEl&quot;&gt;&lt;/div&gt;
+        &lt;div class=&quot;feedback&quot; id=&quot;feedback&quot;&gt;&lt;/div&gt;
+        &lt;button class=&quot;next-btn&quot; id=&quot;nextBtn&quot; onclick=&quot;nextQ()&quot;&gt;Continue ?&lt;/button&gt;
+      &lt;/div&gt;
+
+      &lt;div class=&quot;result-wrap&quot; id=&quot;resultEl&quot;&gt;
+        &lt;div class=&quot;result-icon&quot; id=&quot;resultIcon&quot;&gt;??&lt;/div&gt;
+        &lt;div class=&quot;result-title&quot; id=&quot;resultTitle&quot;&gt;Quiz Complete!&lt;/div&gt;
+        &lt;div class=&quot;result-score-big&quot; id=&quot;resultScore&quot;&gt;0%&lt;/div&gt;
+        &lt;div class=&quot;result-sub&quot; id=&quot;resultSub&quot;&gt;&lt;/div&gt;
+        &lt;div class=&quot;result-btns&quot;&gt;
+          &lt;button class=&quot;home-btn&quot; onclick=&quot;goHome()&quot;&gt;Home&lt;/button&gt;
+          &lt;button class=&quot;restart-btn&quot; onclick=&quot;restartQuiz()&quot;&gt;Try Again&lt;/button&gt;
+        &lt;/div&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+
+  &lt;/div&gt;
+&lt;/div&gt;
+
+&lt;div class=&quot;toast&quot; id=&quot;toast&quot;&gt;&lt;/div&gt;
+
+&lt;script&gt;
+/* -----------------------------------------------
+   QUESTION BANK � NCERT Class 9 &amp; 10
+----------------------------------------------- */
+const QB = {
+  '9': {
+    'Matter in Our Surroundings': [
+      { q: &quot;Which of the following is an example of sublimation?&quot;, options: [&quot;Ice melting to water&quot;, &quot;Naphthalene balls disappearing&quot;, &quot;Water evaporating&quot;, &quot;Wax melting&quot;], answer: 1 },
+      { q: &quot;What happens to the kinetic energy of particles when matter is heated?&quot;, options: [&quot;It decreases&quot;, &quot;It remains same&quot;, &quot;It increases&quot;, &quot;It becomes zero&quot;], answer: 2 },
+      { q: &quot;The process of conversion of gas into liquid is called:&quot;, options: [&quot;Evaporation&quot;, &quot;Condensation&quot;, &quot;Melting&quot;, &quot;Sublimation&quot;], answer: 1 },
+      { q: &quot;Which state of matter has a definite volume but no definite shape?&quot;, options: [&quot;Solid&quot;, &quot;Gas&quot;, &quot;Liquid&quot;, &quot;Plasma&quot;], answer: 2 },
+      { q: &quot;Latent heat of vaporisation is the heat required to convert 1 kg of liquid to gas at:&quot;, options: [&quot;0�C&quot;, &quot;100�C&quot;, &quot;Its boiling point&quot;, &quot;Its melting point&quot;], answer: 2 },
+      { q: &quot;What is the SI unit of temperature?&quot;, options: [&quot;Celsius&quot;, &quot;Fahrenheit&quot;, &quot;Kelvin&quot;, &quot;Rankine&quot;], answer: 2 },
+      { q: &quot;Evaporation causes:&quot;, options: [&quot;Heating&quot;, &quot;Cooling&quot;, &quot;No change in temperature&quot;, &quot;Condensation&quot;], answer: 1 },
+      { q: &quot;Which factor does NOT affect the rate of evaporation?&quot;, options: [&quot;Temperature&quot;, &quot;Surface area&quot;, &quot;Color of liquid&quot;, &quot;Wind speed&quot;], answer: 2 },
+      { q: &quot;Dry ice is the solid form of:&quot;, options: [&quot;Water&quot;, &quot;Nitrogen&quot;, &quot;Carbon dioxide&quot;, &quot;Oxygen&quot;], answer: 2 },
+      { q: &quot;Boiling point of water at sea level is:&quot;, options: [&quot;90�C&quot;, &quot;95�C&quot;, &quot;100�C&quot;, &quot;105�C&quot;], answer: 2 }
+    ],
+    'Atoms and Molecules': [
+      { q: &quot;Who proposed the atomic theory of matter?&quot;, options: [&quot;Avogadro&quot;, &quot;Dalton&quot;, &quot;Rutherford&quot;, &quot;Bohr&quot;], answer: 1 },
+      { q: &quot;The chemical formula of water is:&quot;, options: [&quot;HO&quot;, &quot;H2O&quot;, &quot;H2O2&quot;, &quot;HO2&quot;], answer: 1 },
+      { q: &quot;Avogadro's number is approximately:&quot;, options: [&quot;6.022 � 10��&quot;, &quot;6.022 � 10��&quot;, &quot;6.022 � 10�5&quot;, &quot;6.022 � 10��&quot;], answer: 1 },
+      { q: &quot;The molecular mass of CO2 is:&quot;, options: [&quot;28 u&quot;, &quot;44 u&quot;, &quot;32 u&quot;, &quot;22 u&quot;], answer: 1 },
+      { q: &quot;Law of conservation of mass was given by:&quot;, options: [&quot;Newton&quot;, &quot;Dalton&quot;, &quot;Lavoisier&quot;, &quot;Avogadro&quot;], answer: 2 },
+      { q: &quot;How many atoms are in one molecule of ozone?&quot;, options: [&quot;1&quot;, &quot;2&quot;, &quot;3&quot;, &quot;4&quot;], answer: 2 },
+      { q: &quot;The valency of chlorine is:&quot;, options: [&quot;1&quot;, &quot;2&quot;, &quot;3&quot;, &quot;0&quot;], answer: 0 },
+      { q: &quot;Molar mass of sodium (Na) is:&quot;, options: [&quot;11 g/mol&quot;, &quot;23 g/mol&quot;, &quot;22 g/mol&quot;, &quot;24 g/mol&quot;], answer: 1 },
+      { q: &quot;Chemical formula of sodium chloride is:&quot;, options: [&quot;NaCl2&quot;, &quot;Na2Cl&quot;, &quot;NaCl&quot;, &quot;Na2Cl2&quot;], answer: 2 },
+      { q: &quot;Which of the following is a diatomic molecule?&quot;, options: [&quot;Neon&quot;, &quot;Argon&quot;, &quot;Oxygen&quot;, &quot;Sulphur&quot;], answer: 2 }
+    ],
+    'Structure of the Atom': [
+      { q: &quot;Who discovered the electron?&quot;, options: [&quot;Rutherford&quot;, &quot;Bohr&quot;, &quot;J.J. Thomson&quot;, &quot;Goldstein&quot;], answer: 2 },
+      { q: &quot;The nucleus of an atom contains:&quot;, options: [&quot;Only protons&quot;, &quot;Only neutrons&quot;, &quot;Protons and neutrons&quot;, &quot;Protons and electrons&quot;], answer: 2 },
+      { q: &quot;Atomic number of an element is equal to the number of:&quot;, options: [&quot;Neutrons&quot;, &quot;Protons&quot;, &quot;Electrons + Neutrons&quot;, &quot;Nucleons&quot;], answer: 1 },
+      { q: &quot;Isotopes of an element have the same:&quot;, options: [&quot;Mass number&quot;, &quot;Number of neutrons&quot;, &quot;Atomic number&quot;, &quot;Number of nucleons&quot;], answer: 2 },
+      { q: &quot;The maximum number of electrons in the first shell (K) is:&quot;, options: [&quot;8&quot;, &quot;18&quot;, &quot;2&quot;, &quot;32&quot;], answer: 2 },
+      { q: &quot;Who gave the planetary model of the atom?&quot;, options: [&quot;Thomson&quot;, &quot;Bohr&quot;, &quot;Rutherford&quot;, &quot;Chadwick&quot;], answer: 2 },
+      { q: &quot;The charge on a proton is:&quot;, options: [&quot;-1&quot;, &quot;0&quot;, &quot;+1&quot;, &quot;+2&quot;], answer: 2 },
+      { q: &quot;Mass number = ?&quot;, options: [&quot;Protons + Electrons&quot;, &quot;Neutrons only&quot;, &quot;Protons + Neutrons&quot;, &quot;Electrons + Neutrons&quot;], answer: 2 },
+      { q: &quot;Isobars are atoms with the same:&quot;, options: [&quot;Atomic number&quot;, &quot;Number of neutrons&quot;, &quot;Mass number&quot;, &quot;Number of electrons&quot;], answer: 2 },
+      { q: &quot;The valence electrons of magnesium (atomic no. 12) are:&quot;, options: [&quot;1&quot;, &quot;2&quot;, &quot;3&quot;, &quot;4&quot;], answer: 1 }
+    ],
+    'Motion': [
+      { q: &quot;A car travels 60 km in 2 hours. What is its average speed?&quot;, options: [&quot;20 km/h&quot;, &quot;30 km/h&quot;, &quot;40 km/h&quot;, &quot;120 km/h&quot;], answer: 1 },
+      { q: &quot;Which of the following is a vector quantity?&quot;, options: [&quot;Speed&quot;, &quot;Distance&quot;, &quot;Velocity&quot;, &quot;Time&quot;], answer: 2 },
+      { q: &quot;An object moving in a circle with constant speed has:&quot;, options: [&quot;Constant velocity&quot;, &quot;Zero acceleration&quot;, &quot;Changing velocity&quot;, &quot;No acceleration&quot;], answer: 2 },
+      { q: &quot;The slope of a distance-time graph gives:&quot;, options: [&quot;Acceleration&quot;, &quot;Speed&quot;, &quot;Displacement&quot;, &quot;Force&quot;], answer: 1 },
+      { q: &quot;SI unit of acceleration is:&quot;, options: [&quot;m/s&quot;, &quot;km/h&quot;, &quot;m/s�&quot;, &quot;m/s�&quot;], answer: 2 },
+      { q: &quot;If a body starts from rest, initial velocity is:&quot;, options: [&quot;1 m/s&quot;, &quot;0 m/s&quot;, &quot;9.8 m/s&quot;, &quot;10 m/s&quot;], answer: 1 },
+      { q: &quot;A body thrown vertically upward returns to the ground. Its displacement is:&quot;, options: [&quot;Maximum at top&quot;, &quot;Equal to total distance&quot;, &quot;Zero&quot;, &quot;Negative&quot;], answer: 2 },
+      { q: &quot;The first equation of motion is:&quot;, options: [&quot;v = u + at&quot;, &quot;s = ut + �at�&quot;, &quot;v� = u� + 2as&quot;, &quot;s = vt&quot;], answer: 0 },
+      { q: &quot;An odometer measures:&quot;, options: [&quot;Speed&quot;, &quot;Distance travelled&quot;, &quot;Acceleration&quot;, &quot;Velocity&quot;], answer: 1 },
+      { q: &quot;Uniform circular motion is an example of:&quot;, options: [&quot;Uniform motion&quot;, &quot;Non-uniform motion&quot;, &quot;Zero speed&quot;, &quot;Rest&quot;], answer: 1 }
+    ],
+    'Force and Laws of Motion': [
+      { q: &quot;Newton's First Law is also called the law of:&quot;, options: [&quot;Acceleration&quot;, &quot;Inertia&quot;, &quot;Action-Reaction&quot;, &quot;Conservation&quot;], answer: 1 },
+      { q: &quot;The SI unit of force is:&quot;, options: [&quot;Joule&quot;, &quot;Watt&quot;, &quot;Newton&quot;, &quot;Pascal&quot;], answer: 2 },
+      { q: &quot;Which has more inertia � a cricket ball or a rubber ball of the same size?&quot;, options: [&quot;Rubber ball&quot;, &quot;Both equal&quot;, &quot;Cricket ball&quot;, &quot;Depends on speed&quot;], answer: 2 },
+      { q: &quot;F = ma is Newton's:&quot;, options: [&quot;First Law&quot;, &quot;Second Law&quot;, &quot;Third Law&quot;, &quot;Law of Gravitation&quot;], answer: 1 },
+      { q: &quot;Action and reaction forces act on:&quot;, options: [&quot;Same body&quot;, &quot;Different bodies&quot;, &quot;The ground only&quot;, &quot;Air only&quot;], answer: 1 },
+      { q: &quot;A 5 kg object has acceleration 3 m/s�. Force acting on it is:&quot;, options: [&quot;10 N&quot;, &quot;15 N&quot;, &quot;8 N&quot;, &quot;2 N&quot;], answer: 1 },
+      { q: &quot;What is the momentum of a 2 kg object moving at 5 m/s?&quot;, options: [&quot;2.5 kg�m/s&quot;, &quot;7 kg�m/s&quot;, &quot;10 kg�m/s&quot;, &quot;3 kg�m/s&quot;], answer: 2 },
+      { q: &quot;A gun recoils when a bullet is fired. This demonstrates Newton's:&quot;, options: [&quot;First Law&quot;, &quot;Second Law&quot;, &quot;Third Law&quot;, &quot;Law of Gravity&quot;], answer: 2 },
+      { q: &quot;The tendency of a body to remain in its state of rest or motion is:&quot;, options: [&quot;Force&quot;, &quot;Momentum&quot;, &quot;Inertia&quot;, &quot;Acceleration&quot;], answer: 2 },
+      { q: &quot;Unit of momentum is:&quot;, options: [&quot;N/s&quot;, &quot;kg�m/s�&quot;, &quot;kg�m/s&quot;, &quot;N�s�&quot;], answer: 2 }
+    ],
+    'Gravitation': [
+      { q: &quot;The value of g on the surface of Earth is approximately:&quot;, options: [&quot;8.9 m/s�&quot;, &quot;9.8 m/s�&quot;, &quot;10.8 m/s�&quot;, &quot;9.0 m/s�&quot;], answer: 1 },
+      { q: &quot;Gravitational force between two bodies depends on:&quot;, options: [&quot;Their temperatures&quot;, &quot;Their masses and distance&quot;, &quot;Their colors&quot;, &quot;Their speeds&quot;], answer: 1 },
+      { q: &quot;Who discovered the law of universal gravitation?&quot;, options: [&quot;Galileo&quot;, &quot;Einstein&quot;, &quot;Newton&quot;, &quot;Kepler&quot;], answer: 2 },
+      { q: &quot;Weight of an object on the Moon is approximately:&quot;, options: [&quot;Equal to Earth&quot;, &quot;Double that on Earth&quot;, &quot;One-sixth of Earth&quot;, &quot;Zero&quot;], answer: 2 },
+      { q: &quot;The SI unit of gravitational constant G is:&quot;, options: [&quot;N�m/kg&quot;, &quot;N�m�/kg�&quot;, &quot;N/kg�&quot;, &quot;N�kg/m&quot;], answer: 1 },
+      { q: &quot;Buoyancy is related to:&quot;, options: [&quot;Gravity only&quot;, &quot;Upward force by a fluid&quot;, &quot;Friction&quot;, &quot;Air resistance&quot;], answer: 1 },
+      { q: &quot;An object floats in a liquid when:&quot;, options: [&quot;Its density &gt; liquid density&quot;, &quot;Its density &lt; liquid density&quot;, &quot;Its density = 0&quot;, &quot;It has large volume&quot;], answer: 1 },
+      { q: &quot;The weight of a body of mass 10 kg on Earth (g=9.8 m/s�) is:&quot;, options: [&quot;10 N&quot;, &quot;9.8 N&quot;, &quot;98 N&quot;, &quot;980 N&quot;], answer: 2 },
+      { q: &quot;Thrust is the force acting:&quot;, options: [&quot;Parallel to a surface&quot;, &quot;Perpendicular to a surface&quot;, &quot;At 45� to surface&quot;, &quot;Away from surface&quot;], answer: 1 },
+      { q: &quot;Archimedes' Principle states that the buoyant force equals:&quot;, options: [&quot;Weight of object&quot;, &quot;Weight of fluid displaced&quot;, &quot;Volume of object&quot;, &quot;Density � g&quot;], answer: 1 }
+    ],
+    'Work and Energy': [
+      { q: &quot;Work done = Force � ___&quot;, options: [&quot;Time&quot;, &quot;Speed&quot;, &quot;Displacement&quot;, &quot;Mass&quot;], answer: 2 },
+      { q: &quot;SI unit of energy is:&quot;, options: [&quot;Watt&quot;, &quot;Newton&quot;, &quot;Joule&quot;, &quot;Pascal&quot;], answer: 2 },
+      { q: &quot;A body at rest at height h has:&quot;, options: [&quot;Only kinetic energy&quot;, &quot;Only potential energy&quot;, &quot;Both KE and PE&quot;, &quot;No energy&quot;], answer: 1 },
+      { q: &quot;KE of a body of mass m moving at velocity v is:&quot;, options: [&quot;mv&quot;, &quot;mv�&quot;, &quot;�mv�&quot;, &quot;2mv&quot;], answer: 2 },
+      { q: &quot;Power is defined as:&quot;, options: [&quot;Work � Time&quot;, &quot;Work / Time&quot;, &quot;Force � Time&quot;, &quot;Energy � Time&quot;], answer: 1 },
+      { q: &quot;1 kWh = ?&quot;, options: [&quot;1000 J&quot;, &quot;3.6 � 106 J&quot;, &quot;360 J&quot;, &quot;3600 J&quot;], answer: 1 },
+      { q: &quot;When no work is done, force and displacement are:&quot;, options: [&quot;Parallel&quot;, &quot;Anti-parallel&quot;, &quot;Perpendicular&quot;, &quot;Equal&quot;], answer: 2 },
+      { q: &quot;Law of conservation of energy states that energy can be:&quot;, options: [&quot;Created&quot;, &quot;Destroyed&quot;, &quot;Neither created nor destroyed&quot;, &quot;Only destroyed&quot;], answer: 2 },
+      { q: &quot;SI unit of power is:&quot;, options: [&quot;Joule&quot;, &quot;Newton&quot;, &quot;Watt&quot;, &quot;Pascal&quot;], answer: 2 },
+      { q: &quot;A 10 kg ball falls from height 5 m. Its PE (g=10) is:&quot;, options: [&quot;50 J&quot;, &quot;500 J&quot;, &quot;5 J&quot;, &quot;100 J&quot;], answer: 1 }
+    ],
+    'Sound': [
+      { q: &quot;Sound requires a medium to travel. Sound is a:&quot;, options: [&quot;Electromagnetic wave&quot;, &quot;Mechanical wave&quot;, &quot;Transverse wave&quot;, &quot;Light wave&quot;], answer: 1 },
+      { q: &quot;The speed of sound in air at 0�C is approximately:&quot;, options: [&quot;232 m/s&quot;, &quot;332 m/s&quot;, &quot;432 m/s&quot;, &quot;532 m/s&quot;], answer: 1 },
+      { q: &quot;Frequency of sound is measured in:&quot;, options: [&quot;Decibels&quot;, &quot;Metres&quot;, &quot;Hertz&quot;, &quot;Seconds&quot;], answer: 2 },
+      { q: &quot;The human ear can hear frequencies between:&quot;, options: [&quot;20 Hz � 20,000 Hz&quot;, &quot;0 Hz � 100 Hz&quot;, &quot;200 Hz � 2000 Hz&quot;, &quot;2 Hz � 2000 Hz&quot;], answer: 0 },
+      { q: &quot;Ultrasound has frequency:&quot;, options: [&quot;Below 20 Hz&quot;, &quot;Between 20�20000 Hz&quot;, &quot;Above 20,000 Hz&quot;, &quot;Exactly 20,000 Hz&quot;], answer: 2 },
+      { q: &quot;Echo is produced due to:&quot;, options: [&quot;Refraction&quot;, &quot;Absorption&quot;, &quot;Reflection of sound&quot;, &quot;Diffraction&quot;], answer: 2 },
+      { q: &quot;Loudness of sound depends on its:&quot;, options: [&quot;Frequency&quot;, &quot;Wavelength&quot;, &quot;Amplitude&quot;, &quot;Speed&quot;], answer: 2 },
+      { q: &quot;SONAR uses:&quot;, options: [&quot;Infrared waves&quot;, &quot;Ultrasound&quot;, &quot;Radio waves&quot;, &quot;Microwaves&quot;], answer: 1 },
+      { q: &quot;Infrasound has frequency:&quot;, options: [&quot;Above 20,000 Hz&quot;, &quot;20 Hz � 20,000 Hz&quot;, &quot;Below 20 Hz&quot;, &quot;Exactly 20 Hz&quot;], answer: 2 },
+      { q: &quot;Sound travels fastest in:&quot;, options: [&quot;Air&quot;, &quot;Water&quot;, &quot;Vacuum&quot;, &quot;Steel&quot;], answer: 3 }
+    ],
+    'The Fundamental Unit of Life': [
+      { q: &quot;Who discovered the cell?&quot;, options: [&quot;Leeuwenhoek&quot;, &quot;Robert Hooke&quot;, &quot;Robert Brown&quot;, &quot;Schleiden&quot;], answer: 1 },
+      { q: &quot;The cell organelle responsible for energy production is:&quot;, options: [&quot;Ribosome&quot;, &quot;Nucleus&quot;, &quot;Mitochondria&quot;, &quot;Golgi body&quot;], answer: 2 },
+      { q: &quot;Prokaryotic cells lack a:&quot;, options: [&quot;Cell wall&quot;, &quot;Cell membrane&quot;, &quot;Membrane-bound nucleus&quot;, &quot;Ribosome&quot;], answer: 2 },
+      { q: &quot;Plastids are found in:&quot;, options: [&quot;Animal cells only&quot;, &quot;Plant cells only&quot;, &quot;Both plant and animal cells&quot;, &quot;Bacteria only&quot;], answer: 1 },
+      { q: &quot;The powerhouse of the cell is:&quot;, options: [&quot;Nucleus&quot;, &quot;Ribosome&quot;, &quot;Mitochondria&quot;, &quot;Lysosome&quot;], answer: 2 },
+      { q: &quot;DNA is found in:&quot;, options: [&quot;Ribosome&quot;, &quot;Nucleus&quot;, &quot;Mitochondria only&quot;, &quot;Both nucleus and mitochondria&quot;], answer: 3 },
+      { q: &quot;Which organelle is called the 'suicide bag' of the cell?&quot;, options: [&quot;Vacuole&quot;, &quot;Lysosome&quot;, &quot;Ribosome&quot;, &quot;Golgi apparatus&quot;], answer: 1 },
+      { q: &quot;Osmosis involves movement of:&quot;, options: [&quot;Solute from high to low concentration&quot;, &quot;Water from high to low water potential&quot;, &quot;Gas molecules&quot;, &quot;Large food particles&quot;], answer: 1 },
+      { q: &quot;The cell wall of plant cells is made of:&quot;, options: [&quot;Protein&quot;, &quot;Chitin&quot;, &quot;Cellulose&quot;, &quot;Lipid&quot;], answer: 2 },
+      { q: &quot;Plasmolysis occurs when a plant cell is placed in:&quot;, options: [&quot;Hypotonic solution&quot;, &quot;Isotonic solution&quot;, &quot;Hypertonic solution&quot;, &quot;Distilled water&quot;], answer: 2 }
+    ],
+    'Tissues': [
+      { q: &quot;Which tissue covers the body surface?&quot;, options: [&quot;Connective tissue&quot;, &quot;Epithelial tissue&quot;, &quot;Muscle tissue&quot;, &quot;Nervous tissue&quot;], answer: 1 },
+      { q: &quot;Meristematic tissue in plants is responsible for:&quot;, options: [&quot;Food storage&quot;, &quot;Growth&quot;, &quot;Protection&quot;, &quot;Transport&quot;], answer: 1 },
+      { q: &quot;Xylem transports:&quot;, options: [&quot;Food from leaves&quot;, &quot;Water and minerals&quot;, &quot;Oxygen only&quot;, &quot;Carbon dioxide&quot;], answer: 1 },
+      { q: &quot;Phloem transports:&quot;, options: [&quot;Water and minerals&quot;, &quot;Prepared food (photosynthates)&quot;, &quot;Oxygen&quot;, &quot;Minerals only&quot;], answer: 1 },
+      { q: &quot;Which type of muscle is involuntary and striated?&quot;, options: [&quot;Skeletal muscle&quot;, &quot;Smooth muscle&quot;, &quot;Cardiac muscle&quot;, &quot;Both A and B&quot;], answer: 2 },
+      { q: &quot;Cork is formed from:&quot;, options: [&quot;Collenchyma&quot;, &quot;Parenchyma&quot;, &quot;Cork cambium&quot;, &quot;Sclerenchyma&quot;], answer: 2 },
+      { q: &quot;Neurons are cells of:&quot;, options: [&quot;Epithelial tissue&quot;, &quot;Muscular tissue&quot;, &quot;Nervous tissue&quot;, &quot;Connective tissue&quot;], answer: 2 },
+      { q: &quot;Blood is a type of:&quot;, options: [&quot;Epithelial tissue&quot;, &quot;Muscular tissue&quot;, &quot;Connective tissue&quot;, &quot;Nervous tissue&quot;], answer: 2 },
+      { q: &quot;Which plant tissue provides mechanical strength?&quot;, options: [&quot;Parenchyma&quot;, &quot;Collenchyma&quot;, &quot;Sclerenchyma&quot;, &quot;Meristematic&quot;], answer: 2 },
+      { q: &quot;Adipose tissue stores:&quot;, options: [&quot;Water&quot;, &quot;Protein&quot;, &quot;Fat&quot;, &quot;Glycogen&quot;], answer: 2 }
+    ]
+  },
+  '10': {
+    'Chemical Reactions and Equations': [
+      { q: &quot;In a chemical equation, the substances on the left side are called:&quot;, options: [&quot;Products&quot;, &quot;Reactants&quot;, &quot;Catalysts&quot;, &quot;Inhibitors&quot;], answer: 1 },
+      { q: &quot;Rusting of iron is an example of:&quot;, options: [&quot;Combination reaction&quot;, &quot;Decomposition reaction&quot;, &quot;Oxidation reaction&quot;, &quot;Displacement reaction&quot;], answer: 2 },
+      { q: &quot;Which gas is evolved when zinc reacts with dilute H2SO4?&quot;, options: [&quot;Oxygen&quot;, &quot;CO2&quot;, &quot;Hydrogen&quot;, &quot;SO2&quot;], answer: 2 },
+      { q: &quot;Photosynthesis is an example of which type of reaction?&quot;, options: [&quot;Exothermic&quot;, &quot;Endothermic&quot;, &quot;Displacement&quot;, &quot;Double displacement&quot;], answer: 1 },
+      { q: &quot;Burning of magnesium in air is a:&quot;, options: [&quot;Decomposition reaction&quot;, &quot;Combination reaction&quot;, &quot;Displacement reaction&quot;, &quot;Redox reaction only&quot;], answer: 1 },
+      { q: &quot;In a displacement reaction:&quot;, options: [&quot;Two compounds exchange ions&quot;, &quot;A more reactive element displaces a less reactive one&quot;, &quot;A compound breaks down&quot;, &quot;Two elements combine&quot;], answer: 1 },
+      { q: &quot;AgNO3 + NaCl ? AgCl? + NaNO3 is a:&quot;, options: [&quot;Displacement reaction&quot;, &quot;Combination reaction&quot;, &quot;Double displacement reaction&quot;, &quot;Decomposition reaction&quot;], answer: 2 },
+      { q: &quot;Reduction involves:&quot;, options: [&quot;Loss of electrons&quot;, &quot;Gain of oxygen&quot;, &quot;Gain of electrons/loss of oxygen&quot;, &quot;Loss of hydrogen&quot;], answer: 2 },
+      { q: &quot;Corrosion of iron is prevented by:&quot;, options: [&quot;Heating iron&quot;, &quot;Painting or galvanizing&quot;, &quot;Adding acid&quot;, &quot;Adding water&quot;], answer: 1 },
+      { q: &quot;Rancidity in food is caused by:&quot;, options: [&quot;Reduction of fats&quot;, &quot;Oxidation of fats&quot;, &quot;Hydrolysis only&quot;, &quot;Adding antioxidants&quot;], answer: 1 }
+    ],
+    'Acids, Bases and Salts': [
+      { q: &quot;The pH of a neutral solution is:&quot;, options: [&quot;0&quot;, &quot;7&quot;, &quot;14&quot;, &quot;1&quot;], answer: 1 },
+      { q: &quot;Acids turn blue litmus:&quot;, options: [&quot;Green&quot;, &quot;Yellow&quot;, &quot;Red&quot;, &quot;Colourless&quot;], answer: 2 },
+      { q: &quot;NaOH is a:&quot;, options: [&quot;Strong acid&quot;, &quot;Weak acid&quot;, &quot;Strong base&quot;, &quot;Weak base&quot;], answer: 2 },
+      { q: &quot;The chemical name of baking soda is:&quot;, options: [&quot;Sodium carbonate&quot;, &quot;Sodium hydrogen carbonate&quot;, &quot;Sodium hydroxide&quot;, &quot;Calcium carbonate&quot;], answer: 1 },
+      { q: &quot;Plaster of Paris is obtained by heating:&quot;, options: [&quot;Quicklime&quot;, &quot;Limestone&quot;, &quot;Gypsum&quot;, &quot;Calcium hydroxide&quot;], answer: 2 },
+      { q: &quot;Which acid is present in vinegar?&quot;, options: [&quot;Citric acid&quot;, &quot;Lactic acid&quot;, &quot;Acetic acid&quot;, &quot;Tartaric acid&quot;], answer: 2 },
+      { q: &quot;Bases in water produce:&quot;, options: [&quot;H? ions&quot;, &quot;OH? ions&quot;, &quot;Na? ions&quot;, &quot;Cl? ions&quot;], answer: 1 },
+      { q: &quot;Universal indicator gives what colour in a strongly acidic solution?&quot;, options: [&quot;Green&quot;, &quot;Blue&quot;, &quot;Red&quot;, &quot;Orange&quot;], answer: 2 },
+      { q: &quot;Bleaching powder is:&quot;, options: [&quot;Ca(OH)2&quot;, &quot;CaCl2&quot;, &quot;Ca(OCl)Cl&quot;, &quot;CaCO3&quot;], answer: 2 },
+      { q: &quot;Washing soda is:&quot;, options: [&quot;Na2CO3�10H2O&quot;, &quot;NaHCO3&quot;, &quot;NaCl&quot;, &quot;NaOH&quot;], answer: 0 }
+    ],
+    'Metals and Non-metals': [
+      { q: &quot;Which of the following is a liquid metal at room temperature?&quot;, options: [&quot;Sodium&quot;, &quot;Mercury&quot;, &quot;Aluminium&quot;, &quot;Zinc&quot;], answer: 1 },
+      { q: &quot;The process of coating iron with zinc is called:&quot;, options: [&quot;Tinning&quot;, &quot;Galvanisation&quot;, &quot;Electroplating&quot;, &quot;Anodising&quot;], answer: 1 },
+      { q: &quot;Which non-metal is a good conductor of electricity?&quot;, options: [&quot;Sulphur&quot;, &quot;Phosphorus&quot;, &quot;Graphite (Carbon)&quot;, &quot;Bromine&quot;], answer: 2 },
+      { q: &quot;Metals react with acids to produce:&quot;, options: [&quot;CO2&quot;, &quot;Hydrogen gas&quot;, &quot;Oxygen&quot;, &quot;Nitrogen&quot;], answer: 1 },
+      { q: &quot;The most abundant metal in Earth's crust is:&quot;, options: [&quot;Iron&quot;, &quot;Copper&quot;, &quot;Aluminium&quot;, &quot;Silicon&quot;], answer: 2 },
+      { q: &quot;An alloy of copper and tin is called:&quot;, options: [&quot;Brass&quot;, &quot;Bronze&quot;, &quot;Steel&quot;, &quot;Solder&quot;], answer: 1 },
+      { q: &quot;Thermit reaction uses:&quot;, options: [&quot;Zinc oxide + Carbon&quot;, &quot;Al powder + Fe2O3&quot;, &quot;Fe + CuSO4&quot;, &quot;Mg + O2&quot;], answer: 1 },
+      { q: &quot;Ionic compounds in solution conduct electricity because:&quot;, options: [&quot;Electrons move freely&quot;, &quot;Ions are free to move&quot;, &quot;Protons move&quot;, &quot;Molecules vibrate&quot;], answer: 1 },
+      { q: &quot;Which metal is stored under kerosene?&quot;, options: [&quot;Gold&quot;, &quot;Mercury&quot;, &quot;Sodium&quot;, &quot;Copper&quot;], answer: 2 },
+      { q: &quot;The ability of metals to be drawn into wires is called:&quot;, options: [&quot;Malleability&quot;, &quot;Ductility&quot;, &quot;Conductivity&quot;, &quot;Sonority&quot;], answer: 1 }
+    ],
+    'Carbon and its Compounds': [
+      { q: &quot;The property of carbon to form long chains is called:&quot;, options: [&quot;Isomerism&quot;, &quot;Catenation&quot;, &quot;Allotropy&quot;, &quot;Polymerisation&quot;], answer: 1 },
+      { q: &quot;Carbon has valency:&quot;, options: [&quot;2&quot;, &quot;4&quot;, &quot;6&quot;, &quot;8&quot;], answer: 1 },
+      { q: &quot;Ethanol has the molecular formula:&quot;, options: [&quot;CH3OH&quot;, &quot;C2H5OH&quot;, &quot;C3H7OH&quot;, &quot;HCHO&quot;], answer: 1 },
+      { q: &quot;Soaps are sodium or potassium salts of:&quot;, options: [&quot;Short-chain fatty acids&quot;, &quot;Long-chain fatty acids&quot;, &quot;Amino acids&quot;, &quot;Carbonic acid&quot;], answer: 1 },
+      { q: &quot;Buckminsterfullerene is an allotrope of:&quot;, options: [&quot;Silicon&quot;, &quot;Nitrogen&quot;, &quot;Carbon&quot;, &quot;Sulphur&quot;], answer: 2 },
+      { q: &quot;Ethanol + Sodium ? ?&quot;, options: [&quot;Sodium ethoxide + H2&quot;, &quot;Sodium hydroxide + C2H4&quot;, &quot;Sodium acetate + H2&quot;, &quot;No reaction&quot;], answer: 0 },
+      { q: &quot;Detergents work better than soaps in hard water because:&quot;, options: [&quot;They form more foam&quot;, &quot;They do not form scum&quot;, &quot;They are cheaper&quot;, &quot;They are acids&quot;], answer: 1 },
+      { q: &quot;Esterification is a reaction between:&quot;, options: [&quot;Acid + Base&quot;, &quot;Acid + Alcohol&quot;, &quot;Alcohol + Base&quot;, &quot;Ester + Water&quot;], answer: 1 },
+      { q: &quot;Diamond is a bad conductor of electricity because:&quot;, options: [&quot;It has no free electrons&quot;, &quot;It is very hard&quot;, &quot;It has a layered structure&quot;, &quot;It contains impurities&quot;], answer: 0 },
+      { q: &quot;Methane belongs to the homologous series of:&quot;, options: [&quot;Alkenes&quot;, &quot;Alkynes&quot;, &quot;Alkanes&quot;, &quot;Alcohols&quot;], answer: 2 }
+    ],
+    'Life Processes': [
+      { q: &quot;Which organelle is the site of photosynthesis?&quot;, options: [&quot;Mitochondria&quot;, &quot;Chloroplast&quot;, &quot;Ribosome&quot;, &quot;Nucleus&quot;], answer: 1 },
+      { q: &quot;The equation for photosynthesis is:&quot;, options: [&quot;C6H12O6 + 6O2 ? 6CO2 + 6H2O&quot;, &quot;6CO2 + 6H2O ? C6H12O6 + 6O2&quot;, &quot;2H2 + O2 ? 2H2O&quot;, &quot;CO2 + H2O ? C + O2&quot;], answer: 1 },
+      { q: &quot;Stomata are mainly used for:&quot;, options: [&quot;Absorption of water&quot;, &quot;Exchange of gases&quot;, &quot;Food storage&quot;, &quot;Photosynthesis directly&quot;], answer: 1 },
+      { q: &quot;Aerobic respiration produces ATP in the:&quot;, options: [&quot;Nucleus&quot;, &quot;Ribosome&quot;, &quot;Mitochondria&quot;, &quot;Chloroplast&quot;], answer: 2 },
+      { q: &quot;The functional unit of the kidney is:&quot;, options: [&quot;Neuron&quot;, &quot;Nephron&quot;, &quot;Glomerulus&quot;, &quot;Alveolus&quot;], answer: 1 },
+      { q: &quot;Which enzyme in the mouth initiates starch digestion?&quot;, options: [&quot;Pepsin&quot;, &quot;Trypsin&quot;, &quot;Salivary amylase&quot;, &quot;Lipase&quot;], answer: 2 },
+      { q: &quot;Urea is formed in the:&quot;, options: [&quot;Kidney&quot;, &quot;Liver&quot;, &quot;Stomach&quot;, &quot;Lungs&quot;], answer: 1 },
+      { q: &quot;Plants excrete excess water through:&quot;, options: [&quot;Roots&quot;, &quot;Stomata (Transpiration)&quot;, &quot;Flowers&quot;, &quot;Bark&quot;], answer: 1 },
+      { q: &quot;Haemoglobin carries:&quot;, options: [&quot;CO2&quot;, &quot;Glucose&quot;, &quot;Oxygen&quot;, &quot;Urea&quot;], answer: 2 },
+      { q: &quot;Bile is produced by the:&quot;, options: [&quot;Pancreas&quot;, &quot;Stomach&quot;, &quot;Liver&quot;, &quot;Small intestine&quot;], answer: 2 }
+    ],
+    'Heredity and Evolution': [
+      { q: &quot;The term 'gene' was coined by:&quot;, options: [&quot;Mendel&quot;, &quot;Darwin&quot;, &quot;Johannsen&quot;, &quot;Watson&quot;], answer: 2 },
+      { q: &quot;DNA stands for:&quot;, options: [&quot;Dioxynucleic acid&quot;, &quot;Deoxyribonucleic acid&quot;, &quot;Deoxyribose nucleotide acid&quot;, &quot;Diribonucleic acid&quot;], answer: 1 },
+      { q: &quot;Mendel's Law of Segregation applies to:&quot;, options: [&quot;Two traits&quot;, &quot;One trait&quot;, &quot;Three traits&quot;, &quot;Sex-linked traits&quot;], answer: 1 },
+      { q: &quot;In humans, sex is determined by chromosomes inherited from:&quot;, options: [&quot;Mother&quot;, &quot;Father&quot;, &quot;Both equally&quot;, &quot;Neither&quot;], answer: 1 },
+      { q: &quot;The theory of natural selection was proposed by:&quot;, options: [&quot;Lamarck&quot;, &quot;Mendel&quot;, &quot;Darwin&quot;, &quot;Wallace and Darwin&quot;], answer: 3 },
+      { q: &quot;Homologous organs suggest:&quot;, options: [&quot;Convergent evolution&quot;, &quot;Common ancestor (divergent evolution)&quot;, &quot;No relation&quot;, &quot;Identical functions&quot;], answer: 1 },
+      { q: &quot;A Mendelian cross of Tt � Tt gives ratio:&quot;, options: [&quot;1:2:1&quot;, &quot;3:1&quot;, &quot;1:1&quot;, &quot;All tall&quot;], answer: 1 },
+      { q: &quot;Fossils provide evidence for:&quot;, options: [&quot;Heredity only&quot;, &quot;Genetic mutations&quot;, &quot;Evolution&quot;, &quot;Natural selection only&quot;], answer: 2 },
+      { q: &quot;Analogous organs have:&quot;, options: [&quot;Same origin, different function&quot;, &quot;Different origin, same function&quot;, &quot;Same origin and function&quot;, &quot;No structural similarity&quot;], answer: 1 },
+      { q: &quot;Acquired traits are NOT passed to offspring because:&quot;, options: [&quot;They change DNA&quot;, &quot;They do not change germ cells&quot;, &quot;They are dominant&quot;, &quot;They appear late in life&quot;], answer: 1 }
+    ],
+    'Light � Reflection and Refraction': [
+      { q: &quot;The angle of incidence equals the angle of reflection. This is:&quot;, options: [&quot;Snell's Law&quot;, &quot;Law of Refraction&quot;, &quot;Law of Reflection&quot;, &quot;Huygen's Principle&quot;], answer: 2 },
+      { q: &quot;A concave mirror is also called a:&quot;, options: [&quot;Diverging mirror&quot;, &quot;Converging mirror&quot;, &quot;Plane mirror&quot;, &quot;Convex mirror&quot;], answer: 1 },
+      { q: &quot;The focal length of a convex mirror is:&quot;, options: [&quot;Negative&quot;, &quot;Zero&quot;, &quot;Positive&quot;, &quot;Infinite&quot;], answer: 2 },
+      { q: &quot;Refractive index = Speed of light in vacuum / Speed of light in:&quot;, options: [&quot;Air&quot;, &quot;The medium&quot;, &quot;Water&quot;, &quot;Glass&quot;], answer: 1 },
+      { q: &quot;When light goes from denser to rarer medium, it:&quot;, options: [&quot;Bends towards normal&quot;, &quot;Goes straight&quot;, &quot;Bends away from normal&quot;, &quot;Stops&quot;], answer: 2 },
+      { q: &quot;The mirror formula is:&quot;, options: [&quot;1/f = 1/v + 1/u&quot;, &quot;f = v + u&quot;, &quot;1/f = v � u&quot;, &quot;f = v � u&quot;], answer: 0 },
+      { q: &quot;Power of a lens is measured in:&quot;, options: [&quot;Metre&quot;, &quot;Dioptre&quot;, &quot;Candela&quot;, &quot;Watt&quot;], answer: 1 },
+      { q: &quot;A convex lens is a:&quot;, options: [&quot;Diverging lens&quot;, &quot;Converging lens&quot;, &quot;Plane lens&quot;, &quot;Concave lens&quot;], answer: 1 },
+      { q: &quot;The speed of light in vacuum is approximately:&quot;, options: [&quot;2 � 108 m/s&quot;, &quot;3 � 108 m/s&quot;, &quot;4 � 108 m/s&quot;, &quot;1 � 108 m/s&quot;], answer: 1 },
+      { q: &quot;Virtual, erect and diminished image is formed by:&quot;, options: [&quot;Concave mirror always&quot;, &quot;Convex mirror always&quot;, &quot;Plane mirror&quot;, &quot;Concave lens&quot;], answer: 1 }
+    ],
+    'Electricity': [
+      { q: &quot;Ohm's Law states that V = ?&quot;, options: [&quot;I/R&quot;, &quot;IR&quot;, &quot;I + R&quot;, &quot;I � R&quot;], answer: 1 },
+      { q: &quot;SI unit of electric resistance is:&quot;, options: [&quot;Ampere&quot;, &quot;Volt&quot;, &quot;Ohm&quot;, &quot;Watt&quot;], answer: 2 },
+      { q: &quot;In a series circuit, current through each component is:&quot;, options: [&quot;Different&quot;, &quot;Same&quot;, &quot;Zero&quot;, &quot;Depends on resistance&quot;], answer: 1 },
+      { q: &quot;Electric power P = ?&quot;, options: [&quot;V/I&quot;, &quot;V + I&quot;, &quot;V � I&quot;, &quot;I/V&quot;], answer: 2 },
+      { q: &quot;Resistors in parallel have the same:&quot;, options: [&quot;Current&quot;, &quot;Resistance&quot;, &quot;Voltage&quot;, &quot;Power&quot;], answer: 2 },
+      { q: &quot;The SI unit of electric charge is:&quot;, options: [&quot;Ampere&quot;, &quot;Coulomb&quot;, &quot;Volt&quot;, &quot;Ohm&quot;], answer: 1 },
+      { q: &quot;The heating effect of current is used in:&quot;, options: [&quot;Electric motor&quot;, &quot;Electric fan&quot;, &quot;Electric heater&quot;, &quot;Transformer&quot;], answer: 2 },
+      { q: &quot;If two resistors R1 and R2 are in parallel, equivalent resistance R is:&quot;, options: [&quot;R1 + R2&quot;, &quot;R1 � R2 / (R1 + R2)&quot;, &quot;(R1 + R2)/2&quot;, &quot;v(R1 � R2)&quot;], answer: 1 },
+      { q: &quot;A fuse wire has:&quot;, options: [&quot;High melting point and low resistance&quot;, &quot;Low melting point and high resistance&quot;, &quot;Low melting point and low resistance&quot;, &quot;High melting point and high resistance&quot;], answer: 1 },
+      { q: &quot;1 kWh is equal to:&quot;, options: [&quot;1000 J&quot;, &quot;3600 J&quot;, &quot;36,00,000 J&quot;, &quot;3.6 � 106 J&quot;], answer: 3 }
+    ],
+    'Magnetic Effects of Electric Current': [
+      { q: &quot;A magnetic field is produced around a conductor when:&quot;, options: [&quot;It is stationary&quot;, &quot;Electric current flows through it&quot;, &quot;It is made of iron&quot;, &quot;It is cooled&quot;], answer: 1 },
+      { q: &quot;The SI unit of magnetic field strength (B) is:&quot;, options: [&quot;Ampere&quot;, &quot;Weber&quot;, &quot;Tesla&quot;, &quot;Gauss&quot;], answer: 2 },
+      { q: &quot;An electric motor converts:&quot;, options: [&quot;Electrical energy to mechanical energy&quot;, &quot;Mechanical energy to electrical energy&quot;, &quot;Heat to electricity&quot;, &quot;Light to electricity&quot;], answer: 0 },
+      { q: &quot;A generator converts:&quot;, options: [&quot;Electrical to mechanical energy&quot;, &quot;Mechanical energy to electrical energy&quot;, &quot;Chemical to electrical energy&quot;, &quot;Heat to mechanical energy&quot;], answer: 1 },
+      { q: &quot;The direction of force on a current-carrying conductor in a magnetic field is given by:&quot;, options: [&quot;Lenz's Law&quot;, &quot;Faraday's Law&quot;, &quot;Fleming's Left-Hand Rule&quot;, &quot;Fleming's Right-Hand Rule&quot;], answer: 2 },
+      { q: &quot;Electromagnetic induction was discovered by:&quot;, options: [&quot;Maxwell&quot;, &quot;Faraday&quot;, &quot;Tesla&quot;, &quot;Oersted&quot;], answer: 1 },
+      { q: &quot;AC stands for:&quot;, options: [&quot;Alternating Current&quot;, &quot;Ampere Current&quot;, &quot;Atomic Current&quot;, &quot;Advanced Current&quot;], answer: 0 },
+      { q: &quot;In India, the frequency of AC supply is:&quot;, options: [&quot;50 Hz&quot;, &quot;60 Hz&quot;, &quot;100 Hz&quot;, &quot;25 Hz&quot;], answer: 0 },
+      { q: &quot;A solenoid with current passing through it behaves like a:&quot;, options: [&quot;Capacitor&quot;, &quot;Bar magnet&quot;, &quot;Simple wire&quot;, &quot;Insulator&quot;], answer: 1 },
+      { q: &quot;Earthing of electrical appliances is done to:&quot;, options: [&quot;Increase current&quot;, &quot;Prevent electric shock&quot;, &quot;Reduce voltage&quot;, &quot;Increase resistance&quot;], answer: 1 }
+    ],
+    'Our Environment': [
+      { q: &quot;The flow of energy in an ecosystem is:&quot;, options: [&quot;Cyclic&quot;, &quot;Unidirectional&quot;, &quot;Bidirectional&quot;, &quot;Random&quot;], answer: 1 },
+      { q: &quot;Producers in a food chain are:&quot;, options: [&quot;Herbivores&quot;, &quot;Carnivores&quot;, &quot;Green plants&quot;, &quot;Decomposers&quot;], answer: 2 },
+      { q: &quot;10% law of energy transfer in food chain was given by:&quot;, options: [&quot;Lindemann&quot;, &quot;Darwin&quot;, &quot;Odum&quot;, &quot;Tansley&quot;], answer: 0 },
+      { q: &quot;Ozone layer depletion is mainly caused by:&quot;, options: [&quot;CO2&quot;, &quot;CH4&quot;, &quot;CFCs&quot;, &quot;SO2&quot;], answer: 2 },
+      { q: &quot;Which of the following is a biodegradable waste?&quot;, options: [&quot;Plastic bags&quot;, &quot;Glass bottles&quot;, &quot;Vegetable peels&quot;, &quot;Polythene&quot;], answer: 2 },
+      { q: &quot;The ozone layer is found in the:&quot;, options: [&quot;Troposphere&quot;, &quot;Stratosphere&quot;, &quot;Mesosphere&quot;, &quot;Thermosphere&quot;], answer: 1 },
+      { q: &quot;Which level gets maximum energy in a food chain?&quot;, options: [&quot;Top carnivore&quot;, &quot;Herbivore&quot;, &quot;Producers&quot;, &quot;Decomposers&quot;], answer: 2 },
+      { q: &quot;Biomagnification refers to:&quot;, options: [&quot;Increase in biodiversity&quot;, &quot;Concentration of harmful chemicals increasing up the food chain&quot;, &quot;Increase in biomass&quot;, &quot;Photosynthesis rate increase&quot;], answer: 1 },
+      { q: &quot;Decomposers in an ecosystem break down:&quot;, options: [&quot;Rocks into soil&quot;, &quot;Dead organisms into simpler substances&quot;, &quot;CO2 into oxygen&quot;, &quot;Sunlight into energy&quot;], answer: 1 },
+      { q: &quot;The main cause of depletion of ozone layer is:&quot;, options: [&quot;Global warming&quot;, &quot;Acid rain&quot;, &quot;Chlorofluorocarbons (CFCs)&quot;, &quot;CO2 emissions&quot;], answer: 2 }
+    ]
+  }
+};
+
+/* -----------------------------------------------
+   STATE &amp; NAVIGATION
+----------------------------------------------- */
+const TOTAL_Q = 5;
+let cls = '9', chapter = '';
+let qIndex = 0, score = 0, xp = 0, level = 1, streak = 0;
+let answered = false;
+let usedIndices = [];
+
+function goToQuiz() {
+  document.getElementById('frontPage').classList.remove('active');
+  document.getElementById('quizPage').classList.add('active');
+  loadChapters();
+}
+
+function goHome() {
+  document.getElementById('quizPage').classList.remove('active');
+  document.getElementById('frontPage').classList.add('active');
+}
+
+/* -----------------------------------------------
+   CLASS &amp; CHAPTER
+----------------------------------------------- */
+function setClass(c, btn) {
+  cls = c;
+  document.querySelectorAll('.cls-btn').forEach(b =&gt; b.classList.remove('active'));
+  btn.classList.add('active');
+  loadChapters();
+}
+
+function loadChapters() {
+  const sel = document.getElementById('chapterSel');
+  sel.innerHTML = '';
+  Object.keys(QB[cls]).forEach(ch =&gt; {
+    const o = document.createElement('option');
+    o.value = ch; o.textContent = ch;
+    sel.appendChild(o);
+  });
+  chapter = Object.keys(QB[cls])[0];
+  restartQuiz();
+}
+
+function changeChapter() {
+  chapter = document.getElementById('chapterSel').value;
+  restartQuiz();
+}
+
+/* -----------------------------------------------
+   QUIZ LOGIC
+----------------------------------------------- */
+function restartQuiz() {
+  qIndex = 0; score = 0; streak = 0;
+  usedIndices = [];
+  updateStats();
+  document.getElementById('resultEl').style.display = 'none';
+  document.getElementById('quizContent').style.display = 'block';
+  document.getElementById('feedback').textContent = '';
+  showQuestion();
+}
+
+function getRandomQuestion() {
+  const pool = QB[cls][chapter];
+  const available = pool.map((_, i) =&gt; i).filter(i =&gt; !usedIndices.includes(i));
+  if (available.length === 0) usedIndices = [];
+  const pick = available.length &gt; 0
+    ? available[Math.floor(Math.random() * available.length)]
+    : Math.floor(Math.random() * pool.length);
+  usedIndices.push(pick);
+  return pool[pick];
+}
+
+function showQuestion() {
+  answered = false;
+  document.getElementById('nextBtn').classList.remove('show');
+  document.getElementById('feedback').textContent = '';
+
+  const q = getRandomQuestion();
+  const labels = ['A', 'B', 'C', 'D'];
+
+  document.getElementById('qCount').textContent = `Question ${qIndex + 1} of ${TOTAL_Q}`;
+  document.getElementById('chapterTag').textContent = chapter;
+  document.getElementById('qText').textContent = q.q;
+
+  const el = document.getElementById('optionsEl');
+  el.innerHTML = '';
+  q.options.forEach((opt, i) =&gt; {
+    const btn = document.createElement('button');
+    btn.className = 'option-btn';
+    btn.innerHTML = `&lt;span class=&quot;opt-letter&quot;&gt;${labels[i]}&lt;/span&gt;&lt;span&gt;${opt}&lt;/span&gt;`;
+    btn.onclick = () =&gt; checkAnswer(i, q.answer);
+    el.appendChild(btn);
+  });
+}
+
+function checkAnswer(chosen, correct) {
+  if (answered) return;
+  answered = true;
+
+  document.querySelectorAll('.option-btn').forEach((b, i) =&gt; {
+    b.disabled = true;
+    if (i === correct) b.classList.add('correct');
+    if (i === chosen &amp;&amp; chosen !== correct) b.classList.add('wrong');
+  });
+
+  const fb = document.getElementById('feedback');
+  if (chosen === correct) {
+    fb.textContent = '? Correct!';
+    fb.className = 'feedback ok';
+    score += 10;
+    xp += 20;
+    streak++;
+    if (streak &gt;= 3) xp += 5;
+    if (xp &gt;= level * 100) {
+      level++;
+      showToast('? Level Up! Now Level ' + level);
+    }
+    bumpStat('scoreVal');
+    if (streak &gt; 1) bumpStat('streakVal');
+  } else {
+    fb.textContent = '? Wrong � correct answer is highlighted.';
+    fb.className = 'feedback err';
+    streak = 0;
+  }
+
+  updateStats();
+  document.getElementById('nextBtn').classList.add('show');
+}
+
+function nextQ() {
+  qIndex++;
+  if (qIndex &gt;= TOTAL_Q) {
+    showResult();
+  } else {
+    showQuestion();
+  }
+}
+
+function showResult() {
+  document.getElementById('quizContent').style.display = 'none';
+  document.getElementById('resultEl').style.display = 'block';
+  const pct = Math.round(score / (TOTAL_Q * 10) * 100);
+  const icon = pct &gt;= 80 ? '??' : pct &gt;= 60 ? '??' : pct &gt;= 40 ? '??' : '??';
+  const title = pct &gt;= 80 ? 'Excellent!' : pct &gt;= 60 ? 'Good job!' : pct &gt;= 40 ? 'Keep going!' : 'Keep practicing!';
+  document.getElementById('resultIcon').textContent = icon;
+  document.getElementById('resultTitle').textContent = title;
+  document.getElementById('resultScore').textContent = pct + '%';
+  document.getElementById('resultSub').textContent = score + ' / ' + (TOTAL_Q * 10) + ' points � ' + chapter;
+}
+
+/* -----------------------------------------------
+   UI HELPERS
+----------------------------------------------- */
+function updateStats() {
+  document.getElementById('scoreVal').textContent = score;
+  document.getElementById('levelVal').textContent = level;
+  document.getElementById('streakVal').textContent = streak;
+  document.getElementById('xpLevel').textContent = 'Level ' + level;
+  const need = level * 100;
+  const cur = xp % need;
+  document.getElementById('xpNums').textContent = cur + ' / ' + need + ' XP';
+  document.getElementById('xpFill').style.width = Math.round(cur / need * 100) + '%';
+}
+
+function bumpStat(id) {
+  const el = document.getElementById(id);
+  el.classList.add('bump');
+  setTimeout(() =&gt; el.classList.remove('bump'), 700);
+}
+
+function showToast(msg) {
+  const t = document.getElementById('toast');
+  t.textContent = msg;
+  t.classList.add('show');
+  setTimeout(() =&gt; t.classList.remove('show'), 3000);
+}
+&lt;/script&gt;
+&lt;/body&gt;
+&lt;/html&gt;</pre>
+</body>
+</html>
