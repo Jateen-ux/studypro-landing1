@@ -1,0 +1,997 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>StudyPro — Learn Smarter</title>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Syne:wght@700;800&display=swap" rel="stylesheet"/>
+<style>
+*{margin:0;padding:0;box-sizing:border-box;}
+body{font-family:'Space Grotesk',sans-serif;background:#060b14;color:#e8edf5;min-height:100vh;overflow-x:hidden;}
+
+:root{
+  --green:#22c55e;
+  --green-dark:#16a34a;
+  --green-glow:rgba(34,197,94,0.2);
+  --gold:#f59e0b;
+  --red:#ef4444;
+  --blue:#3b82f6;
+  --card:#0d1829;
+  --card2:#111f36;
+  --border:rgba(255,255,255,0.08);
+  --text2:#8fa3be;
+  --text3:#4d6480;
+}
+
+/* -- NAV -- */
+nav{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  padding:18px 5%;
+  position:sticky;
+  top:0;
+  z-index:100;
+  background:rgba(6,11,20,0.85);
+  backdrop-filter:blur(14px);
+  border-bottom:1px solid var(--border);
+}
+.logo{
+  font-family:'Syne',sans-serif;
+  font-size:18px;
+  font-weight:800;
+  letter-spacing:-0.5px;
+  display:flex;
+  align-items:center;
+  gap:8px;
+}
+.logo-icon{
+  width:32px;
+  height:32px;
+  background:linear-gradient(135deg,var(--green),#0ea5e9);
+  border-radius:9px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-size:16px;
+}
+.nav-links{display:flex;align-items:center;gap:6px;}
+.nav-btn{
+  padding:8px 14px;
+  border-radius:9px;
+  font-size:13px;
+  font-weight:600;
+  cursor:pointer;
+  border:none;
+  transition:all .2s;
+}
+.nav-ghost{
+  background:transparent;
+  color:var(--text2);
+  font-family:'Space Grotesk',sans-serif;
+}
+.nav-ghost:hover{color:#e8edf5;background:rgba(255,255,255,0.06);}
+.nav-primary{
+  background:var(--green);
+  color:#fff;
+  font-family:'Space Grotesk',sans-serif;
+}
+.nav-primary:hover{background:var(--green-dark);}
+
+/* -- SCREENS -- */
+.screen{display:none;animation:fadeUp .4s ease both;}
+.screen.active{display:block;}
+@keyframes fadeUp{
+  from{opacity:0;transform:translateY(16px)}
+  to{opacity:1;transform:translateY(0)}
+}
+
+/* -- HERO -- */
+#screen-home{padding:0;}
+.hero{
+  text-align:center;
+  padding:80px 5% 60px;
+  position:relative;
+  overflow:hidden;
+}
+.hero-glow{
+  position:absolute;
+  top:-80px;
+  left:50%;
+  transform:translateX(-50%);
+  width:600px;
+  height:400px;
+  background:radial-gradient(ellipse,rgba(34,197,94,0.12) 0%,transparent 70%);
+  pointer-events:none;
+}
+.hero h1{
+  font-family:'Syne',sans-serif;
+  font-size:clamp(36px,6vw,64px);
+  font-weight:800;
+  line-height:1.05;
+  letter-spacing:-2px;
+  margin-bottom:18px;
+}
+.hero h1 span{color:var(--green);}
+.hero p{
+  color:var(--text2);
+  max-width:480px;
+  margin:0 auto 32px;
+  font-size:16px;
+  line-height:1.7;
+}
+.cta-row{display:flex;gap:12px;justify-content:center;flex-wrap:wrap;}
+.btn-primary{
+  padding:13px 24px;
+  background:var(--green);
+  color:#fff;
+  border:none;
+  border-radius:12px;
+  font-size:15px;
+  font-weight:700;
+  cursor:pointer;
+  font-family:'Space Grotesk',sans-serif;
+  transition:all .2s;
+  letter-spacing:-0.3px;
+}
+.btn-primary:hover{background:var(--green-dark);transform:translateY(-1px);}
+.btn-ghost{
+  padding:13px 24px;
+  background:transparent;
+  color:#e8edf5;
+  border:1px solid var(--border);
+  border-radius:12px;
+  font-size:15px;
+  font-weight:600;
+  cursor:pointer;
+  font-family:'Space Grotesk',sans-serif;
+  transition:all .2s;
+}
+.btn-ghost:hover{border-color:rgba(255,255,255,0.2);background:rgba(255,255,255,0.04);}
+
+/* -- STATS STRIP -- */
+.stats-strip{
+  display:flex;
+  justify-content:center;
+  gap:0;
+  border-top:1px solid var(--border);
+  border-bottom:1px solid var(--border);
+  margin:0 5%;
+  border-radius:16px;
+  overflow:hidden;
+  background:var(--card);
+}
+.stat-item{
+  flex:1;
+  padding:24px 20px;
+  text-align:center;
+  position:relative;
+}
+.stat-item+.stat-item::before{
+  content:'';
+  position:absolute;
+  left:0;
+  top:25%;
+  height:50%;
+  width:1px;
+  background:var(--border);
+}
+.stat-num{
+  font-family:'Syne',sans-serif;
+  font-size:28px;
+  font-weight:800;
+  color:var(--green);
+}
+.stat-label{
+  font-size:12px;
+  color:var(--text2);
+  margin-top:4px;
+  font-weight:500;
+  letter-spacing:0.5px;
+  text-transform:uppercase;
+}
+
+/* -- FEATURES -- */
+.features{padding:60px 5%;}
+.section-label{
+  font-size:11px;
+  letter-spacing:2px;
+  text-transform:uppercase;
+  color:var(--green);
+  font-weight:700;
+  margin-bottom:12px;
+}
+.section-title{
+  font-family:'Syne',sans-serif;
+  font-size:28px;
+  font-weight:800;
+  margin-bottom:36px;
+  letter-spacing:-1px;
+}
+.features-grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(180px,1fr));
+  gap:14px;
+}
+.feat-card{
+  background:var(--card);
+  border:1px solid var(--border);
+  border-radius:16px;
+  padding:20px;
+  transition:all .25s;
+  cursor:default;
+}
+.feat-card:hover{
+  border-color:rgba(34,197,94,0.3);
+  background:var(--card2);
+  transform:translateY(-2px);
+}
+.feat-icon{
+  width:40px;
+  height:40px;
+  border-radius:10px;
+  background:var(--green-glow);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-size:20px;
+  margin-bottom:12px;
+}
+.feat-name{font-size:14px;font-weight:600;margin-bottom:4px;}
+.feat-desc{font-size:12px;color:var(--text2);line-height:1.5;}
+
+/* -- QUIZ SCREEN -- */
+#screen-quiz{padding:30px 5%;}
+.quiz-header{
+  display:flex;
+  align-items:center;
+  gap:16px;
+  margin-bottom:28px;
+  flex-wrap:wrap;
+}
+.quiz-back{
+  background:var(--card);
+  border:1px solid var(--border);
+  color:#e8edf5;
+  padding:8px 14px;
+  border-radius:9px;
+  font-size:13px;
+  font-weight:600;
+  cursor:pointer;
+  font-family:'Space Grotesk',sans-serif;
+  transition:all .2s;
+}
+.quiz-back:hover{background:var(--card2);}
+.quiz-meta{flex:1;display:flex;gap:16px;align-items:center;flex-wrap:wrap;}
+.xp-pill{
+  background:var(--green-glow);
+  border:1px solid rgba(34,197,94,0.3);
+  color:var(--green);
+  padding:6px 14px;
+  border-radius:100px;
+  font-size:13px;
+  font-weight:700;
+}
+.level-pill{
+  background:rgba(245,158,11,0.15);
+  border:1px solid rgba(245,158,11,0.3);
+  color:var(--gold);
+  padding:6px 14px;
+  border-radius:100px;
+  font-size:13px;
+  font-weight:700;
+}
+.streak-pill{
+  background:rgba(239,68,68,0.12);
+  border:1px solid rgba(239,68,68,0.3);
+  color:var(--red);
+  padding:6px 14px;
+  border-radius:100px;
+  font-size:13px;
+  font-weight:700;
+}
+
+/* XP BAR */
+.xp-bar-wrap{margin-bottom:24px;}
+.xp-bar-labels{
+  display:flex;
+  justify-content:space-between;
+  font-size:12px;
+  color:var(--text2);
+  margin-bottom:6px;
+}
+.xp-bar-track{
+  height:8px;
+  background:rgba(255,255,255,0.07);
+  border-radius:100px;
+  overflow:hidden;
+}
+.xp-bar-fill{
+  height:100%;
+  background:linear-gradient(90deg,var(--green),#0ea5e9);
+  border-radius:100px;
+  transition:width .5s ease;
+}
+
+/* PROGRESS DOTS */
+.progress-row{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  margin-bottom:16px;
+}
+.q-counter{font-size:13px;color:var(--text2);font-weight:600;}
+.q-dots{display:flex;gap:5px;}
+.q-dot{
+  width:8px;
+  height:8px;
+  border-radius:50%;
+  background:rgba(255,255,255,0.1);
+  transition:all .3s;
+}
+.q-dot.done-correct{background:var(--green);}
+.q-dot.done-wrong{background:var(--red);}
+.q-dot.current{background:var(--blue);transform:scale(1.3);}
+
+/* QUESTION CARD */
+.q-card{
+  background:var(--card);
+  border:1px solid var(--border);
+  border-radius:20px;
+  padding:28px;
+  margin-bottom:16px;
+}
+.q-category{
+  font-size:11px;
+  text-transform:uppercase;
+  letter-spacing:1.5px;
+  color:var(--green);
+  font-weight:700;
+  margin-bottom:10px;
+}
+.q-text{
+  font-family:'Syne',sans-serif;
+  font-size:20px;
+  font-weight:700;
+  line-height:1.35;
+  letter-spacing:-0.5px;
+}
+
+/* OPTIONS */
+.options-grid{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:10px;
+  margin-bottom:16px;
+}
+@media(max-width:480px){.options-grid{grid-template-columns:1fr;}}
+.opt-btn{
+  padding:14px 16px;
+  background:var(--card);
+  border:1px solid var(--border);
+  border-radius:13px;
+  color:#e8edf5;
+  font-size:14px;
+  font-weight:500;
+  cursor:pointer;
+  text-align:left;
+  transition:all .2s;
+  font-family:'Space Grotesk',sans-serif;
+  display:flex;
+  align-items:center;
+  gap:10px;
+}
+.opt-letter{
+  width:24px;
+  height:24px;
+  border-radius:7px;
+  background:rgba(255,255,255,0.07);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-size:11px;
+  font-weight:700;
+  flex-shrink:0;
+  transition:all .2s;
+}
+.opt-btn:hover:not(:disabled){
+  border-color:rgba(59,130,246,0.5);
+  background:rgba(59,130,246,0.08);
+}
+.opt-btn:hover:not(:disabled) .opt-letter{
+  background:rgba(59,130,246,0.3);
+  color:#fff;
+}
+.opt-btn.correct{border-color:var(--green);background:rgba(34,197,94,0.12);}
+.opt-btn.correct .opt-letter{background:var(--green);color:#fff;}
+.opt-btn.wrong{border-color:var(--red);background:rgba(239,68,68,0.1);}
+.opt-btn.wrong .opt-letter{background:var(--red);color:#fff;}
+.opt-btn:disabled{cursor:default;}
+
+/* FEEDBACK BAR */
+.feedback-bar{
+  height:52px;
+  display:flex;
+  align-items:center;
+  padding:0 18px;
+  border-radius:12px;
+  font-size:14px;
+  font-weight:600;
+  margin-bottom:14px;
+  transition:all .3s;
+}
+.feedback-bar.show-correct{
+  background:rgba(34,197,94,0.15);
+  border:1px solid rgba(34,197,94,0.3);
+  color:var(--green);
+}
+.feedback-bar.show-wrong{
+  background:rgba(239,68,68,0.1);
+  border:1px solid rgba(239,68,68,0.3);
+  color:var(--red);
+}
+.feedback-bar.hidden{opacity:0;pointer-events:none;}
+
+/* NEXT BUTTON */
+#btn-next{
+  width:100%;
+  padding:14px;
+  background:var(--green);
+  color:#fff;
+  border:none;
+  border-radius:13px;
+  font-size:15px;
+  font-weight:700;
+  cursor:pointer;
+  font-family:'Space Grotesk',sans-serif;
+  transition:all .2s;
+  display:none;
+}
+#btn-next:hover{background:var(--green-dark);}
+
+/* RESULTS SCREEN */
+#screen-results{padding:30px 5%;text-align:center;}
+.result-ring{
+  width:130px;
+  height:130px;
+  border-radius:50%;
+  background:conic-gradient(var(--green) calc(var(--pct)*1%),rgba(255,255,255,0.07) 0);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  margin:0 auto 24px;
+  position:relative;
+}
+.result-ring-inner{
+  width:100px;
+  height:100px;
+  border-radius:50%;
+  background:#060b14;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+}
+.result-pct{
+  font-family:'Syne',sans-serif;
+  font-size:26px;
+  font-weight:800;
+  color:var(--green);
+}
+.result-label{font-size:11px;color:var(--text2);}
+.result-title{
+  font-family:'Syne',sans-serif;
+  font-size:28px;
+  font-weight:800;
+  margin-bottom:8px;
+  letter-spacing:-1px;
+}
+.result-sub{color:var(--text2);font-size:15px;margin-bottom:28px;}
+.result-stats{
+  display:flex;
+  justify-content:center;
+  gap:20px;
+  margin-bottom:32px;
+  flex-wrap:wrap;
+}
+.rs{
+  background:var(--card);
+  border:1px solid var(--border);
+  border-radius:14px;
+  padding:14px 22px;
+  text-align:center;
+}
+.rs-num{
+  font-family:'Syne',sans-serif;
+  font-size:22px;
+  font-weight:800;
+}
+.rs-lbl{
+  font-size:11px;
+  color:var(--text2);
+  text-transform:uppercase;
+  letter-spacing:1px;
+  margin-top:2px;
+}
+.result-actions{display:flex;gap:12px;justify-content:center;flex-wrap:wrap;}
+
+/* TOAST NOTIFICATION */
+#toast{
+  position:fixed;
+  top:80px;
+  left:50%;
+  transform:translateX(-50%) translateY(-20px);
+  background:var(--card2);
+  border:1px solid rgba(34,197,94,0.4);
+  color:var(--green);
+  padding:10px 20px;
+  border-radius:100px;
+  font-size:14px;
+  font-weight:700;
+  pointer-events:none;
+  opacity:0;
+  transition:all .3s;
+  z-index:999;
+  white-space:nowrap;
+}
+#toast.show{opacity:1;transform:translateX(-50%) translateY(0);}
+
+/* LEVEL UP OVERLAY */
+#levelup-overlay{
+  position:fixed;
+  inset:0;
+  background:rgba(0,0,0,0.75);
+  display:none;
+  align-items:center;
+  justify-content:center;
+  z-index:500;
+  animation:fadeUp .3s ease;
+}
+#levelup-overlay.show{display:flex;}
+.levelup-card{
+  background:var(--card2);
+  border:2px solid var(--gold);
+  border-radius:24px;
+  padding:40px;
+  text-align:center;
+  max-width:320px;
+}
+.levelup-star{font-size:56px;margin-bottom:12px;}
+.levelup-title{
+  font-family:'Syne',sans-serif;
+  font-size:26px;
+  font-weight:800;
+  color:var(--gold);
+  margin-bottom:8px;
+}
+.levelup-sub{color:var(--text2);font-size:14px;margin-bottom:24px;}
+</style>
+</head>
+<body>
+
+<!-- TOAST -->
+<div id="toast"></div>
+
+<!-- LEVEL UP OVERLAY -->
+<div id="levelup-overlay">
+  <div class="levelup-card">
+    <div class="levelup-star">?</div>
+    <div class="levelup-title" id="lu-title">Level Up!</div>
+    <div class="levelup-sub" id="lu-sub">You reached Level 2</div>
+    <button class="btn-primary" onclick="closeLevelUp()" style="margin-top:8px;">Keep Going</button>
+  </div>
+</div>
+
+<!-- NAVIGATION -->
+<nav>
+  <div class="logo">
+    <div class="logo-icon">??</div>
+    StudyPro
+  </div>
+  <div class="nav-links">
+    <button class="nav-btn nav-ghost" onclick="showScreen('home')">Home</button>
+    <button class="nav-btn nav-primary" onclick="showScreen('quiz')">Start Quiz</button>
+  </div>
+</nav>
+
+<!-- --------------------------------------
+     HOME SCREEN
+---------------------------------------- -->
+<div id="screen-home" class="screen active">
+
+  <!-- Hero -->
+  <div class="hero">
+    <div class="hero-glow"></div>
+    <h1>Learn. Play.<br><span>Level Up.</span></h1>
+    <p>Gamified learning with XP, streaks, smart quizzes, and a rewards system built for students who actually want to grow.</p>
+    <div class="cta-row">
+      <button class="btn-primary" onclick="showScreen('quiz')">Start Learning</button>
+      <button class="btn-ghost" onclick="document.getElementById('features-section').scrollIntoView({behavior:'smooth'})">See Features</button>
+    </div>
+  </div>
+
+  <!-- Stats Strip -->
+  <div class="stats-strip">
+    <div class="stat-item">
+      <div class="stat-num">10K+</div>
+      <div class="stat-label">Students</div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-num">1M+</div>
+      <div class="stat-label">Quizzes</div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-num">95%</div>
+      <div class="stat-label">Engagement</div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-num">4.9?</div>
+      <div class="stat-label">Rating</div>
+    </div>
+  </div>
+
+  <!-- Features -->
+  <div class="features" id="features-section">
+    <div class="section-label">What you get</div>
+    <div class="section-title">Everything to learn smarter</div>
+    <div class="features-grid">
+      <div class="feat-card">
+        <div class="feat-icon">??</div>
+        <div class="feat-name">Offline Mode</div>
+        <div class="feat-desc">Study anywhere, no internet required.</div>
+      </div>
+      <div class="feat-card">
+        <div class="feat-icon">??</div>
+        <div class="feat-name">Smart Quizzes</div>
+        <div class="feat-desc">Adaptive questions that match your level.</div>
+      </div>
+      <div class="feat-card">
+        <div class="feat-icon">?</div>
+        <div class="feat-name">XP &amp; Levels</div>
+        <div class="feat-desc">Earn XP for every correct answer you get.</div>
+      </div>
+      <div class="feat-card">
+        <div class="feat-icon">??</div>
+        <div class="feat-name">Daily Streaks</div>
+        <div class="feat-desc">Build habits with daily learning streaks.</div>
+      </div>
+      <div class="feat-card">
+        <div class="feat-icon">??</div>
+        <div class="feat-name">Rewards Shop</div>
+        <div class="feat-desc">Spend XP on badges, themes and perks.</div>
+      </div>
+      <div class="feat-card">
+        <div class="feat-icon">??</div>
+        <div class="feat-name">Analytics</div>
+        <div class="feat-desc">Track progress with detailed insights.</div>
+      </div>
+    </div>
+  </div>
+
+</div><!-- /screen-home -->
+
+
+<!-- --------------------------------------
+     QUIZ SCREEN
+---------------------------------------- -->
+<div id="screen-quiz" class="screen">
+
+  <!-- Header Row -->
+  <div class="quiz-header">
+    <button class="quiz-back" onclick="showScreen('home')">? Back</button>
+    <div class="quiz-meta">
+      <div class="xp-pill"    id="xp-pill">? 0 XP</div>
+      <div class="level-pill" id="level-pill">? Level 1</div>
+      <div class="streak-pill" id="streak-pill">?? 0 Streak</div>
+    </div>
+  </div>
+
+  <!-- XP Progress Bar -->
+  <div class="xp-bar-wrap">
+    <div class="xp-bar-labels">
+      <span id="xp-bar-label">XP Progress</span>
+      <span id="xp-bar-next">0 / 100 XP to Level 2</span>
+    </div>
+    <div class="xp-bar-track">
+      <div class="xp-bar-fill" id="xp-bar" style="width:0%"></div>
+    </div>
+  </div>
+
+  <!-- Question Progress -->
+  <div class="progress-row">
+    <span class="q-counter" id="q-counter">Question 1 of 10</span>
+    <div class="q-dots" id="q-dots"></div>
+  </div>
+
+  <!-- Question Card -->
+  <div class="q-card">
+    <div class="q-category" id="q-category">Science</div>
+    <div class="q-text"     id="q-text">Loading...</div>
+  </div>
+
+  <!-- Answer Options -->
+  <div class="options-grid" id="options-grid"></div>
+
+  <!-- Feedback -->
+  <div class="feedback-bar hidden" id="feedback-bar"></div>
+
+  <!-- Next Button -->
+  <button id="btn-next" onclick="nextQ()">Next Question ?</button>
+
+</div><!-- /screen-quiz -->
+
+
+<!-- --------------------------------------
+     RESULTS SCREEN
+---------------------------------------- -->
+<div id="screen-results" class="screen">
+
+  <!-- Score Ring -->
+  <div class="result-ring" id="result-ring" style="--pct:0">
+    <div class="result-ring-inner">
+      <div class="result-pct" id="res-pct">0%</div>
+      <div class="result-label">Score</div>
+    </div>
+  </div>
+
+  <div class="result-title" id="res-title">Well done!</div>
+  <div class="result-sub"   id="res-sub">You completed the quiz</div>
+
+  <!-- Result Stats -->
+  <div class="result-stats">
+    <div class="rs">
+      <div class="rs-num" id="res-correct" style="color:var(--green)">0</div>
+      <div class="rs-lbl">Correct</div>
+    </div>
+    <div class="rs">
+      <div class="rs-num" id="res-xp" style="color:var(--gold)">0</div>
+      <div class="rs-lbl">XP Earned</div>
+    </div>
+    <div class="rs">
+      <div class="rs-num" id="res-streak" style="color:var(--red)">0</div>
+      <div class="rs-lbl">Best Streak</div>
+    </div>
+  </div>
+
+  <!-- Actions -->
+  <div class="result-actions">
+    <button class="btn-primary" onclick="restartQuiz()">Play Again</button>
+    <button class="btn-ghost"   onclick="showScreen('home')">Back to Home</button>
+  </div>
+
+</div><!-- /screen-results -->
+
+
+<!-- --------------------------------------
+     JAVASCRIPT
+---------------------------------------- -->
+<script>
+/* --------------- CONSTANTS --------------- */
+const LETTERS = ['A', 'B', 'C', 'D'];
+
+/* --------------- QUIZ DATA --------------- */
+const quiz = [
+  { cat:'Science',   q:'What is matter?',                                          opts:['Anything with mass and volume','Pure energy','Visible light','Magnetic force'],           ans:0 },
+  { cat:'Physics',   q:'What is the SI unit of force?',                            opts:['Joule','Newton','Watt','Pascal'],                                                         ans:1 },
+  { cat:'Biology',   q:'Who first discovered the cell?',                           opts:['Robert Hooke','Isaac Newton','Albert Einstein','Niels Bohr'],                             ans:0 },
+  { cat:'Biology',   q:'Photosynthesis primarily occurs in which organelle?',      opts:['Mitochondria','Chloroplast','Nucleus','Ribosome'],                                        ans:1 },
+  { cat:'Physics',   q:'What is the formula for speed?',                           opts:['Distance ÷ Time','Mass ÷ Volume','Force ÷ Area','Energy ÷ Mass'],                        ans:0 },
+  { cat:'Chemistry', q:'What is the atomic number of Carbon?',                     opts:['6','8','12','14'],                                                                        ans:0 },
+  { cat:'Biology',   q:'Which blood type is the universal donor?',                 opts:['A+','B-','O-','AB+'],                                                                     ans:2 },
+  { cat:'Physics',   q:'What is the approximate speed of light?',                  opts:['3×108 m/s','3×106 m/s','3×10¹° m/s','3×104 m/s'],                                      ans:0 },
+  { cat:'Chemistry', q:'What gas do plants absorb from the air?',                  opts:['Oxygen','Nitrogen','Carbon Dioxide','Hydrogen'],                                          ans:2 },
+  { cat:'Biology',   q:'What is the powerhouse of the cell?',                      opts:['Nucleus','Ribosome','Mitochondria','Golgi Body'],                                         ans:2 },
+];
+
+/* --------------- STATE --------------- */
+let state = {
+  xp:        0,
+  level:     1,
+  streak:    0,
+  bestStreak:0,
+  qIndex:    0,
+  score:     0,
+  answered:  false,
+  results:   [],
+  sessionXP: 0,
+};
+
+/* --------------- SCREEN SWITCHING --------------- */
+function showScreen(id) {
+  document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
+  document.getElementById('screen-' + id).classList.add('active');
+  if (id === 'quiz') {
+    if (state.qIndex === 0) initQuiz();
+    else renderQ();
+  }
+}
+
+/* --------------- QUIZ INIT --------------- */
+function initQuiz() {
+  state.qIndex    = 0;
+  state.score     = 0;
+  state.streak    = 0;
+  state.bestStreak= 0;
+  state.answered  = false;
+  state.results   = [];
+  state.sessionXP = 0;
+  buildDots();
+  renderQ();
+}
+
+function restartQuiz() {
+  initQuiz();
+  showScreen('quiz');
+}
+
+/* --------------- DOTS --------------- */
+function buildDots() {
+  const d = document.getElementById('q-dots');
+  d.innerHTML = '';
+  quiz.forEach((_, i) => {
+    const dot = document.createElement('div');
+    dot.className = 'q-dot' + (i === 0 ? ' current' : '');
+    dot.id = 'dot-' + i;
+    d.appendChild(dot);
+  });
+}
+
+/* --------------- RENDER QUESTION --------------- */
+function renderQ() {
+  const q = quiz[state.qIndex];
+  state.answered = false;
+
+  document.getElementById('q-category').textContent = q.cat;
+  document.getElementById('q-text').textContent     = q.q;
+  document.getElementById('q-counter').textContent  = `Question ${state.qIndex + 1} of ${quiz.length}`;
+
+  const fb = document.getElementById('feedback-bar');
+  fb.className   = 'feedback-bar hidden';
+  fb.textContent = '';
+
+  document.getElementById('btn-next').style.display = 'none';
+
+  const grid = document.getElementById('options-grid');
+  grid.innerHTML = '';
+  q.opts.forEach((opt, i) => {
+    const btn = document.createElement('button');
+    btn.className = 'opt-btn';
+    btn.innerHTML = `<span class="opt-letter">${LETTERS[i]}</span>${opt}`;
+    btn.onclick   = () => checkAnswer(i, btn);
+    grid.appendChild(btn);
+  });
+
+  updateDots();
+  updateHUD();
+}
+
+/* --------------- CHECK ANSWER --------------- */
+function checkAnswer(chosen, btn) {
+  if (state.answered) return;
+  state.answered = true;
+
+  const q       = quiz[state.qIndex];
+  const correct = chosen === q.ans;
+  const fb      = document.getElementById('feedback-bar');
+  const allBtns = document.querySelectorAll('.opt-btn');
+
+  // Reveal correct / wrong
+  allBtns.forEach((b, i) => {
+    b.disabled = true;
+    if (i === q.ans)              b.classList.add('correct');
+    else if (b === btn && !correct) b.classList.add('wrong');
+  });
+
+  if (correct) {
+    state.score++;
+    state.streak++;
+    if (state.streak > state.bestStreak) state.bestStreak = state.streak;
+
+    const xpGain    = 20 + (state.streak > 2 ? 10 : 0); // bonus for hot streak
+    state.xp       += xpGain;
+    state.sessionXP += xpGain;
+    state.results.push('correct');
+
+    fb.textContent = `? Correct! +${xpGain} XP`;
+    fb.className   = 'feedback-bar show-correct';
+    showToast(`+${xpGain} XP`);
+    checkLevelUp();
+  } else {
+    state.streak = 0;
+    state.results.push('wrong');
+    fb.textContent = `? Wrong — correct answer: ${LETTERS[q.ans]}`;
+    fb.className   = 'feedback-bar show-wrong';
+  }
+
+  updateDots();
+  updateHUD();
+  document.getElementById('btn-next').style.display = 'block';
+}
+
+/* --------------- NEXT QUESTION --------------- */
+function nextQ() {
+  state.qIndex++;
+  if (state.qIndex >= quiz.length) {
+    showResults();
+  } else {
+    renderQ();
+  }
+}
+
+/* --------------- UPDATE DOTS --------------- */
+function updateDots() {
+  state.results.forEach((r, i) => {
+    const d = document.getElementById('dot-' + i);
+    if (d) d.className = 'q-dot ' + (r === 'correct' ? 'done-correct' : 'done-wrong');
+  });
+  const cur = document.getElementById('dot-' + state.qIndex);
+  if (cur && !state.results[state.qIndex]) cur.className = 'q-dot current';
+}
+
+/* --------------- UPDATE HUD --------------- */
+function updateHUD() {
+  document.getElementById('xp-pill').textContent     = `? ${state.xp} XP`;
+  document.getElementById('level-pill').textContent  = `? Level ${state.level}`;
+  document.getElementById('streak-pill').textContent = `?? ${state.streak} Streak`;
+
+  const needed = state.level * 100;
+  const pct    = Math.min(100, Math.round((state.xp % needed) / needed * 100));
+  document.getElementById('xp-bar').style.width     = pct + '%';
+  document.getElementById('xp-bar-next').textContent =
+    `${state.xp % needed} / ${needed} XP to Level ${state.level + 1}`;
+}
+
+/* --------------- LEVEL UP CHECK --------------- */
+function checkLevelUp() {
+  const needed = state.level * 100;
+  if (state.xp >= needed) {
+    state.level++;
+    document.getElementById('lu-title').textContent = 'Level Up!';
+    document.getElementById('lu-sub').textContent   = `You reached Level ${state.level}! Keep crushing it.`;
+    document.getElementById('levelup-overlay').classList.add('show');
+  }
+}
+
+function closeLevelUp() {
+  document.getElementById('levelup-overlay').classList.remove('show');
+}
+
+/* --------------- RESULTS --------------- */
+function showResults() {
+  const total   = quiz.length;
+  const correct = state.results.filter(r => r === 'correct').length;
+  const pct     = Math.round(correct / total * 100);
+
+  document.getElementById('result-ring').style.setProperty('--pct', pct);
+  document.getElementById('res-pct').textContent     = pct + '%';
+  document.getElementById('res-correct').textContent = correct + '/' + total;
+  document.getElementById('res-xp').textContent      = '+' + state.sessionXP;
+  document.getElementById('res-streak').textContent  = state.bestStreak;
+
+  let title = 'Great effort!', sub = 'Keep practicing to improve!';
+  if (pct === 100)    { title = 'Perfect score!';   sub = 'You nailed every single question!'; }
+  else if (pct >= 80) { title = 'Excellent work!';  sub = "You're really getting the hang of this."; }
+  else if (pct >= 60) { title = 'Good job!';        sub = 'A bit more practice and you\'ll master it.'; }
+
+  document.getElementById('res-title').textContent = title;
+  document.getElementById('res-sub').textContent   = sub;
+
+  showScreen('results');
+}
+
+/* --------------- TOAST --------------- */
+let toastTimer;
+function showToast(msg) {
+  const t = document.getElementById('toast');
+  t.textContent = msg;
+  t.classList.add('show');
+  clearTimeout(toastTimer);
+  toastTimer = setTimeout(() => t.classList.remove('show'), 1800);
+}
+
+/* --------------- BOOT --------------- */
+initQuiz();
+</script>
+
+</body>
+</html>
